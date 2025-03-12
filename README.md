@@ -28,3 +28,8 @@ Thank you for your support!
 
 
 ---
+
+# _config.yml
+theme: jekyll-theme-minimal
+title: "Support Our Cause"
+description: "Help us make an impact by donating to our cause."
