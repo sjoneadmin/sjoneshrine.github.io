@@ -1,3 +1,6 @@
+# _config.yml
+theme: jekyll-theme-minimal
+
 # Support Our Cause
 
 We appreciate your generosity in supporting our mission. Your donations help us continue our work and support those in need.
@@ -29,7 +32,4 @@ Thank you for your support!
 
 ---
 
-# _config.yml
-theme: jekyll-theme-minimal
-title: "Support Our Cause"
-description: "Help us make an impact by donating to our cause."
+
