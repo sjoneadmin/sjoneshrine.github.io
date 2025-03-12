@@ -1,5 +1,6 @@
-# _config.yml
-theme: jekyll-theme-minimal
+---
+layout: architect 
+---
 
 # Support Our Cause
 
@@ -28,8 +29,3 @@ Every dollar counts, and we appreciate your support!
 Click the button above to be redirected to our secure donation page powered by **HitPay**. You can donate using various payment methods including credit cards, Apple Pay, and more.
 
 Thank you for your support!
-
-
----
-
-
