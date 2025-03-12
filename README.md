@@ -28,4 +28,3 @@ Thank you for your support!
 
 
 ---
-theme: jekyll-theme-minimal
