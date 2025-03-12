@@ -1,5 +1,5 @@
 ---
-layout: default 
+
 ---
 
 # Support Our Cause
