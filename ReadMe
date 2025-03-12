@@ -1,3 +1,7 @@
+curl -X DELETE -H "Authorization: token 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" \
+  -H "Accept: application/vnd.github.v3+json" \
+  https://api.github.com/repos/sjoneadmin/sjoneshrine.github.io/contents/ReadMe \
+  -d '{"message":"Delete ReadMe","sha":"8596482b96466c962f7e45b01c4477a1d0307f01"}'
 ---
 layout: architect
 ---
