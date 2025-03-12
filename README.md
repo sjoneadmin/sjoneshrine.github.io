@@ -1,6 +1,4 @@
----
 
----
 
 # Support Our Cause
 
