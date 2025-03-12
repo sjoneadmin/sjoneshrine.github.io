@@ -1,5 +1,5 @@
 ---
-# layout: architect 
+layout: default 
 ---
 
 # Support Our Cause
