@@ -1,5 +1,5 @@
 ---
-layout: architect 
+# layout: architect 
 ---
 
 # Support Our Cause
