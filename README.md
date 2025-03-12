@@ -26,4 +26,6 @@ Click the button above to be redirected to our secure donation page powered by *
 
 Thank you for your support!
 
+
 ---
+theme: jekyll-theme-minimal
