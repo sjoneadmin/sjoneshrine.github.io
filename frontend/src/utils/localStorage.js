@@ -283,7 +283,7 @@ export const paymentProviders = [
   },
   {
     id: "paypal",
-    name: "PayPal",
+    name: "PayPal", 
     description: "Pay securely with PayPal",
     supportedTypes: ["one-time"],
     icon: "💳",
