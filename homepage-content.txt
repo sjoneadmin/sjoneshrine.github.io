@@ -1,0 +1,548 @@
+Here is the complete content for your main index.html file. Copy everything below:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sjòne Shrine Inc. | Supporting Future Female Leaders</title>
+    <meta name="description" content="Supporting emerging future female leaders in virtual athletic performance, E-Sports coaching, recreational therapy, and gear.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background-color: #ffffff;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e7eb;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #FE6F5E;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #FE6F5E;
+        }
+
+        .donate-btn {
+            background: linear-gradient(135deg, #FE6F5E, #FE4A36);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .donate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(254, 111, 94, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8fafc 0%, #fff7ed 50%, #fef2f2 100%);
+            padding: 8rem 0 6rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #111827;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FE6F5E, #FE4A36);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(254, 111, 94, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #374151;
+            padding: 1rem 2rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: #FE6F5E;
+            color: #FE6F5E;
+            transform: translateY(-3px);
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .mission-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .mission-card {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .mission-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #FE6F5E, #FE4A36);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .mission-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        .mission-card p {
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* Impact Section */
+        .impact {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #FE6F5E 0%, #FE4A36 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .impact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #fff7ed 100%);
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #111827;
+            color: white;
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #FE6F5E;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            color: #9ca3af;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .impact-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .hero-container,
+            .mission-container,
+            .impact-container,
+            .cta-container,
+            .footer-container {
+                padding: 0 1rem;
+            }
+
+            .impact-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Sjòne Shrine Inc.</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="./donations/" class="donate-btn">Donate Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <h1 class="hero-title">Empowering Future Female Leaders</h1>
+            <p class="hero-subtitle">
+                Supporting emerging female leaders in virtual athletic performance, 
+                E-Sports coaching, recreational therapy, and gear through comprehensive 
+                programs and resources.
+            </p>
+            <div class="hero-cta">
+                <a href="./donations/" class="btn-primary">
+                    🎯 Support Our Mission
+                </a>
+                <a href="#mission" class="btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="mission">
+        <div class="mission-container">
+            <h2 class="section-title">Our Mission Areas</h2>
+            <p class="section-subtitle">
+                We focus on four key areas to build the next generation of female leaders 
+                in virtual athletic performance and digital sports.
+            </p>
+            
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">🏆</div>
+                    <h3>Virtual Athletic Performance</h3>
+                    <p>
+                        Developing cutting-edge training programs and technologies to enhance 
+                        performance in virtual athletic competitions and digital sports platforms.
+                    </p>
+                </div>
+                
+                <div class="mission-card">
+                    <div class="mission-icon">🎮</div>
+                    <h3>E-Sports Coaching</h3>
+                    <p>
+                        Professional coaching and mentorship programs designed to elevate 
+                        female gamers to competitive levels in the rapidly growing E-Sports industry.
+                    </p>
+                </div>
+                
+                <div class="mission-card">
+                    <div class="mission-icon">🌟</div>
+                    <h3>Recreational Therapy</h3>
+                    <p>
+                        Innovative therapeutic approaches using gaming and virtual environments 
+                        to promote mental health, social connection, and personal development.
+                    </p>
+                </div>
+                
+                <div class="mission-card">
+                    <div class="mission-icon">⚡</div>
+                    <h3>Equipment & Gear</h3>
+                    <p>
+                        Providing access to high-quality gaming equipment, technology, and gear 
+                        to ensure equal opportunities in competitive digital environments.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="impact">
+        <div class="impact-container">
+            <h2 class="section-title">Making Real Impact</h2>
+            <p class="section-subtitle">
+                Through our comprehensive programs, we're building pathways for female 
+                leaders to excel in the digital future.
+            </p>
+            
+            <div class="impact-stats">
+                <div class="stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Future Leaders Supported</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Program Completion Rate</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">$2.8M</span>
+                    <span class="stat-label">In Scholarships Awarded</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Partner Organizations</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-container">
+            <h2 class="section-title">Ready to Make a Difference?</h2>
+            <p class="section-subtitle">
+                Join us in supporting the next generation of female leaders in virtual 
+                athletic performance and digital innovation. Your contribution creates 
+                lasting change and opens doors to new opportunities.
+            </p>
+            <div style="margin-top: 2rem;">
+                <a href="./donations/" class="btn-primary">
+                    💝 Start Supporting Today
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#mission">Mission</a>
+                <a href="#impact">Impact</a>
+                <a href="./donations/">Donate</a>
+                <a href="mailto:contact@sjoneshrine.org">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Sjòne Shrine Inc. Supporting emerging future female leaders in virtual athletic performance.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation state
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
