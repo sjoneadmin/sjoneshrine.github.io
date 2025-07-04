@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "./donations/static/css/main.0b81a705.css",
+    "main.js": "./donations/static/js/main.79b7cb80.js",
+    "index.html": "./donations/index.html",
+    "main.0b81a705.css.map": "./donations/static/css/main.0b81a705.css.map",
+    "main.79b7cb80.js.map": "./donations/static/js/main.79b7cb80.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0b81a705.css",
+    "static/js/main.79b7cb80.js"
+  ]
+}
