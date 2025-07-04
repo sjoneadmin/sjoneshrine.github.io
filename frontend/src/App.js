@@ -85,6 +85,19 @@ const Navigation = () => {
             <div className="space-y-2">
               {navigation.map((item) => {
                 const Icon = item.icon;
+                if (item.external) {
+                  return (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all duration-200 text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                    >
+                      <Icon className="w-5 h-5" />
+                      {item.name}
+                    </a>
+                  );
+                }
                 return (
                   <Link
                     key={item.name}
