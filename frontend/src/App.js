@@ -12,7 +12,8 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const navigation = [
-    { name: 'Dashboard', href: '/', icon: Home },
+    { name: 'Main Site', href: '../', icon: Home, external: true },
+    { name: 'Dashboard', href: '/', icon: Target },
     { name: 'Donate Now', href: '/donate', icon: Heart },
   ];
 
