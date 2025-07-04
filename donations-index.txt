@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="theme-color" content="#000000"/>
+    <meta name="description" content="Sjòne Shrine Inc. Donations Goal Tracker - Supporting emerging future female leaders in virtual athletic performance, E-Sports coaching, recreational therapy, and gear."/>
+    <title>Donations | Sjòne Shrine Inc.</title>
+    <script defer="defer" src="./static/js/main.bf601c28.js"></script>
+    <link href="./static/css/main.0b81a705.css" rel="stylesheet">
+</head>
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+</body>
+</html>
