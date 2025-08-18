@@ -1,0 +1,88 @@
+/* style.css - shared styling for homepage and tabs */
+body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background: #333;
+    color: white;
+    padding: 2rem 0;
+}
+
+main {
+    margin: 2rem;
+}
+
+a.button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    margin: 1rem;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+a.button:hover {
+    background: #0056b3;
+}
+
+/* Tabs styling */
+.tabs {
+    display: flex;
+    justify-content: center;
+    background: #333;
+}
+
+.tabs button {
+    padding: 14px 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #333;
+    color: white;
+    transition: background 0.2s;
+    font-size: 16px;
+}
+
+.tabs button:hover {
+    background: #444;
+}
+
+.tabContent {
+    display: none;
+    padding: 2rem;
+    text-align: center;
+    background: white;
+    min-height: 200px;
+}
+
+.loginBox {
+    margin: 1rem auto;
+}
+
+input {
+    padding: 8px;
+    margin-right: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+button.unlock {
+    background: #007bff;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.hiddenContent {
+    display: none;
+    margin-top: 1rem;
+}
