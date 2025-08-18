@@ -88,4 +88,24 @@ body {
     </div>
 </div>
 
-<sc
+<script>
+// Base64-protected password (user types "sunsunsway")
+const encodedPassword = "c3Vuc3Vuc3N3YXk=";
+
+function checkPassword() {
+    const input = document.getElementById("tab-password").value.trim();
+    const correct = atob(encodedPassword).trim();
+    if(input === correct) {
+        document.getElementById("password-section").style.display = "none";
+
+        // Enable hover for all tabs
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => tab.classList.add('hover-enabled'));
+    } else {
+        alert("Incorrect password!");
+    }
+}
+</script>
+
+</body>
+</html>
