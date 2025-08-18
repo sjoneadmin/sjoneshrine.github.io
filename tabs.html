@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Protected Tabs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="tabs">
+    <button onclick="openTab('origin')">ORIGIN</button>
+    <button onclick="openTab('range')">RANGE</button>
+    <button onclick="openTab('season')">SEASON</button>
+    <button onclick="openTab('performance')">PERFORMANCE</button>
+    <button onclick="openTab('action')">ACTION</button>
+    <button onclick="openTab('support')">SUPPORT</button>
+</div>
+
+<!-- ORIGIN -->
+<div id="origin" class="tabContent">
+    <h2>ORIGIN (Password Required)</h2>
+    <div class="loginBox">
+        <input type="password" id="pw-origin" placeholder="Enter Password">
+        <button class="unlock" onclick="unlockTab('origin')">Unlock</button>
+    </div>
+    <div id="content-origin" class="hiddenContent">
+        <h3>✅ ORIGIN Content</h3>
+        <p>Put your ORIGIN content here...</p>
+    </div>
+</div>
+
+<!-- RANGE -->
+<div id="range" class="tabContent">
+    <h2>RANGE (Password Required)</h2>
+    <div class="loginBox">
+        <input type="password" id="pw-range" placeholder="Enter Password">
+        <button class="unlock" onclick="unlockTab('range')">Unlock</button>
+    </div>
+    <div id="content-range" class="hiddenContent">
+        <h3>✅ RANGE Content</h3>
+        <p>Put your RANGE content here...</p>
+    </div>
+</div>
+
+<!-- SEASON -->
+<div id="season" class="tabContent">
+    <h2>SEASON (Password Required)</h2>
+    <div class="loginBox">
+        <input type="password" id="pw-season" placeholder="Enter Password">
+        <button class="unlock" onclick="unlockTab('season')">Unlock</button>
+    </div>
+    <div id="content-season" class="hiddenContent">
+        <h3>✅ SEASON Content</h3>
+        <p>Put your SEASON content here...</p>
+    </div>
+</div>
+
+<!-- PERFORMANCE -->
+<div id="performance" class="tabContent">
+    <h2>PERFORMANCE (Password Required)</h2>
+    <div class="loginBox">
+        <input type="password" id="pw-performance" placeholder="Enter Password">
+        <button class="unlock" onclick="unlockTab('performance')">Unlock</button>
+    </div>
+    <div id="content-performance" class="hiddenContent">
+        <h3>✅ PERFORMANCE Content</h3>
+        <p>Put your PERFORMANCE content here...</p>
+    </div>
+</div>
+
+<!-- ACTION -->
+<div id="action" class="tabContent">
+    <h2>ACTION (Password Required)</h2>
+    <div class="loginBox">
+        <input type="password" id="pw-action" placeholder="Enter Password">
+        <button class="unlock" onclick="unlockTab('action')">Unlock</button>
+    </div>
+    <div id="content-action" class="hiddenContent">
+        <h3>✅ ACTION Content</h3>
+        <p>Put your ACTION content here...</p>
+    </div>
+</div>
+
+<!-- SUPPORT -->
+<div id="support" class="tabContent">
+    <h2>SUPPORT (Password Required)</h2>
+    <div class="loginBox">
+        <input type="password" id="pw-support" placeholder="Enter Password">
+        <button class="unlock" onclick="unlockTab('support')">Unlock</button>
+    </div>
+    <div id="content-support" class="hiddenContent">
+        <h3>✅ SUPPORT Content</h3>
+        <p>Put your SUPPORT content here...</p>
+    </div>
+</div>
+
+<script>
+const passwords = {
+    origin: "origin123",
+    range: "range123",
+    season: "season123",
+    performance: "perf123",
+    action: "action123",
+    support: "support123"
+};
+
+// Open a tab
+function openTab(tabId) {
+    let tabs = document.getElementsByClassName("tabContent");
+    for (let i = 0; i < tabs.length; i++) {
+        tabs[i].style.display = "none";
+    }
+    document.getElementById(tabId).style.display = "block";
+}
+
+// Unlock tab content
+function unlockTab(tabId) {
+    const input = document.getElementById("pw-" + tabId).value;
+    if (input === passwords[tabId]) {
+        document.getElementById("content-" + tabId).style.display = "block";
+    } else {
+        alert("Wrong password for " + tabId.toUpperCase() + "!");
+    }
+}
+
+// Open first tab by default
+openTab("origin");
+</script>
+
+</body>
+</html>
