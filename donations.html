@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tithe Decision</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #f9f9f9;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .btn {
+      padding: 12px 24px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    .yes { background-color: #4caf50; color: white; }
+    .no { background-color: #f44336; color: white; }
+    .btn:hover { opacity: 0.8; }
+    #donationTracker {
+      margin-top: 30px;
+      padding: 20px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      display: none;
+      text-align: center;
+    }
+    progress {
+      width: 100%;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Would you like to tithe?</h1>
+  <button class="btn yes" onclick="showDonation()">Yes</button>
+  <button class="btn no" onclick="goToAuth()">No</button>
+
+  <div id="donationTracker">
+    <h2>Donation Tracker</h2>
+    <p>Total Raised: <strong>$1,250</strong> / $50,000</p>
+    <progress value="1250" max="50000"></progress>
+    <p><em>Thank you for supporting our mission. Your donation ensures you’ll receive direct access.</em></p>
+    <!-- You can embed your donation button/service here -->
+    <button class="btn yes" onclick="alert('Donation button placeholder')">Donate Now</button>
+  </div>
+
+  <script>
+    function showDonation() {
+      document.getElementById('donationTracker').style.display = 'block';
+    }
+    function goToAuth() {
+      // Send them to the Cloudflare-protected section
+      window.location.href = "tabs.html";
+    }
+  </script>
+</body>
+</html>
