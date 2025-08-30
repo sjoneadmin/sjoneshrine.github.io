@@ -1,23 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Project Homepage</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Project Homepage</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+    }
+
+    header {
+      background: #333;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .tabs {
+      display: flex;
+      background: #444;
+    }
+
+    .tab-button {
+      flex: 1;
+      padding: 1rem;
+      background: #444;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .tab-button:hover {
+      background: #666;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 2rem;
+      background: #fff;
+      min-height: 200px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .logout {
+      background: #c0392b !important;
+    }
+  </style>
 </head>
 <body>
 
 <header>
-    <h1>Welcome to My Project</h1>
-    <p>Access the tabs below for your interactive sections.</p>
+  <h1>Welcome to My Project</h1>
+  <p>Choose a tab to begin. Some areas may require your password.</p>
 </header>
 
-<main>
-    <h2>Explore Tabs</h2>
-    <p>Click the button below to open the interactive tabs page:</p>
-    <a class="button" href="tabs.html">Go to Tabs</a>
-</main>
+<!-- Tabs -->
+<div class="tabs">
+  <button class="tab-button" onclick="openTab('level1')">Level 1</button>
+  <button class="tab-button" onclick="openTab('level2')">Level 2</button>
+  <button class="tab-button" onclick="openTab('level3')">Level 3</button>
+  <button class="tab-button logout" onclick="logout()">Logout</button>
+</div>
+
+<!-- Tab Contents -->
+<div id="level1" class="tab-content">
+  <h2>Level 1</h2>
+  <p>This content is protected. Please enter your password:</p>
+  <input type="password" id="pass1" placeholder="Enter password">
+  <button onclick="checkPassword('pass1','secret1','level1-content')">Unlock</button>
+  <div id="level1-content" style="display:none; margin-top:1rem;">
+    <p>🎉 You’ve unlocked Level 1 content!</p>
+  </div>
+</div>
+
+<div id="level2" class="tab-content">
+  <h2>Level 2</h2>
+  <p>This content is protected. Please enter your password:</p>
+  <input type="password" id="pass2" placeholder="Enter password">
+  <button onclick="checkPassword('pass2','secret2','level2-content')">Unlock</button>
+  <div id="level2-content" style="display:none; margin-top:1rem;">
+    <p>🎉 You’ve unlocked Level 2 content!</p>
+  </div>
+</div>
+
+<div id="level3" class="tab-content">
+  <h2>Level 3</h2>
+  <p>This content is protected. Please enter your password:</p>
+  <input type="password" id="pass3" placeholder="Enter password">
+  <button onclick="checkPassword('pass3','secret3','level3-content')">Unlock</button>
+  <div id="level3-content" style="display:none; margin-top:1rem;">
+    <p>🎉 You’ve unlocked Level 3 content!</p>
+  </div>
+</div>
+
+<script>
+  // Open a tab
+  function openTab(tabId) {
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(content => content.style.display = 'none');
+    document.getElementById(tabId).style.display = 'block';
+  }
+
+  // Check password for tab
+  function checkPassword(inputId, correctPassword, contentId) {
+    const entered = document.getElementById(inputId).value;
+    if (entered === correctPassword) {
+      document.getElementById(contentId).style.display = 'block';
+    } else {
+      alert("Incorrect password.");
+    }
+  }
+
+  // Logout clears everything
+  function logout() {
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(content => content.style.display = 'none');
+    alert("You have logged out.");
+  }
+</script>
 
 </body>
 </html>
