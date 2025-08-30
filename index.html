@@ -1,66 +1,573 @@
+File 1 Homepage:
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sjone Shrine Login</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f5f5f5;
-      margin: 0;
-    }
-    .login-box {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      text-align: center;
-    }
-    input[type="password"] {
-      padding: 0.5rem;
-      font-size: 1rem;
-      width: 80%;
-      margin-bottom: 1rem;
-    }
-    button {
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      cursor: pointer;
-      background: #3f2b96;
-      color: white;
-      border: none;
-      border-radius: 5px;
-    }
-    button:hover {
-      background: #5f3dc4;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sjòne Shrine | Supporting Future Leaders</title>
+    <meta name="description" content="Sjòne Shrine provides specialized programs for young women ages 18-25 entering adulthood without guidance or support. Four-year structured journey designed like chapters of personal growth.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        coral: '#F47E7E',
+                        lavender: '#CCCCFF',
+                        'coral-dark': '#E06B6B',
+                        'lavender-dark': '#B8B8FF'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #F47E7E 0%, #CCCCFF 100%);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #F47E7E 0%, #CCCCFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .leaf-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F47E7E' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-11.046 8.954-20 20-20s20 8.954 20 20-8.954 20-20 20-20-8.954-20-20zm0 0c0 11.046-8.954 20-20 20s-20-8.954-20-20 8.954-20 20-20 20 8.954 20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-lg border-b z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center mr-3">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L8 8L12 12L16 8L12 2Z" fill="white"/>
+                            <path d="M2 12L8 8L12 12L8 16L2 12Z" fill="white"/>
+                            <path d="M22 12L16 8L12 12L16 16L22 12Z" fill="white"/>
+                            <path d="M12 22L8 16L12 12L16 16L12 22Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-black text-gray-900">Sjòne Shrine</span>
+                </div>
 
-<div class="login-box">
-  <h2>Enter Password to Access Tabs</h2>
-  <input type="password" id="login-pass" placeholder="Enter password">
-  <br>
-  <button onclick="checkLogin()">Login</button>
-</div>
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-coral transition-colors">About</a>
+                    <a href="#programs" class="text-gray-600 hover:text-coral transition-colors">Programs</a>
+                    <a href="#enrollment" class="text-gray-600 hover:text-coral transition-colors">Apply</a>
+                    <a href="/donations" class="gradient-bg text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105">Support Us</a>
+                </div>
 
-<script>
-  function checkLogin() {
-    const password = document.getElementById('login-pass').value;
-    if (password === "wewelcomeyou") {
-      // Redirect to tabs page
-      window.location.href = "tabs.html";
-    } else {
-      alert("Incorrect password. Please try again.");
-    }
-  }
-</script>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="text-gray-600 hover:text-coral">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section class="pt-20 pb-16 gradient-bg text-white min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                Supporting Future Leaders
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+                A specialized program for young women ages 18-25 entering adulthood without guidance or support. Your journey begins here.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="/apply.html" class="bg-white text-coral px-8 py-4 rounded-full text-lg font-bold hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    Start Your Application
+                </a>
+                <a href="#about" class="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-coral transition-all duration-300">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-gradient mb-6">Our Mission</h2>
+                <div class="w-20 h-1 gradient-bg mx-auto mb-8"></div>
+                <p class="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                    At Sjòne Shrine, we believe that every young woman deserves the tools, community, and guidance to build a life of purpose and stability. We provide intensive, holistic support for those navigating the transition to adulthood without traditional family or institutional backing.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="text-center">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Comprehensive Education</h3>
+                    <p class="text-gray-600 leading-relaxed">Life skills, financial literacy, career development, and personal growth curriculum designed for real-world success.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Strong Community</h3>
+                    <p class="text-gray-600 leading-relaxed">A supportive network of peers, mentors, and staff who understand your journey and are committed to your success.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Proven Results</h3>
+                    <p class="text-gray-600 leading-relaxed">Our graduates leave with practical skills, emotional resilience, and a clear path forward in their chosen fields.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-20 bg-gray-50 leaf-pattern">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-gradient mb-6">Our Four-Year Journey</h2>
+                <div class="w-20 h-1 gradient-bg mx-auto mb-8"></div>
+                <p class="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                    Designed like a story unfolding in chapters, our program provides structured progression through four transformative years.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Year 1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-coral to-lavender rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-lg">1</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Year One: Foundation</h3>
+                            <p class="text-coral font-semibold">Orientation & Stabilization</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Establishing safety, routine, and core life practices. Focus on basic financial literacy, health and wellness, communication skills, and building healthy relationships.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Personal safety and emergency preparedness</li>
+                        <li>• Basic financial management and budgeting</li>
+                        <li>• Health and nutrition foundations</li>
+                        <li>• Communication and conflict resolution</li>
+                    </ul>
+                </div>
+
+                <!-- Year 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-coral to-lavender rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-lg">2</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Year Two: Expansion</h3>
+                            <p class="text-coral font-semibold">Skill-Building & Growth</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Advanced skill development, digital literacy, and self-governance. Participants begin to specialize in areas of interest while building independence.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Advanced financial planning and investing</li>
+                        <li>• Digital skills and online presence management</li>
+                        <li>• Career exploration and skill development</li>
+                        <li>• Self-advocacy and personal boundaries</li>
+                    </ul>
+                </div>
+
+                <!-- Year 3 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-coral to-lavender rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-lg">3</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Year Three: Leadership</h3>
+                            <p class="text-coral font-semibold">Responsibility & Contribution</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Taking on leadership roles, contributing to the community, and developing creative output. Participants mentor newer members and lead projects.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Mentoring and peer support leadership</li>
+                        <li>• Project management and team coordination</li>
+                        <li>• Creative expression and portfolio development</li>
+                        <li>• Community engagement and service learning</li>
+                    </ul>
+                </div>
+
+                <!-- Year 4 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-coral to-lavender rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-lg">4</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">Year Four: Transition</h3>
+                            <p class="text-coral font-semibold">Sovereignty & Independence</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Designing your next path and preparing to leave with stability. Focus on career placement, housing preparation, and building lasting support networks.
+                    </p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Career placement and professional development</li>
+                        <li>• Independent housing and living arrangements</li>
+                        <li>• Building lasting personal and professional networks</li>
+                        <li>• Legacy planning and giving back to the community</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-gradient mb-6">How You Can Help</h2>
+                <div class="w-20 h-1 gradient-bg mx-auto mb-8"></div>
+                <p class="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                    Every contribution makes a difference in transforming young women's lives. Join us in building futures.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Your Impact</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 gradient-bg rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white font-bold text-sm">$50</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Provides essential supplies</h4>
+                                <p class="text-gray-600 text-sm">Personal care items, school supplies, and basic necessities for one participant for a month.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 gradient-bg rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white font-bold text-sm">$200</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Funds skill development workshops</h4>
+                                <p class="text-gray-600 text-sm">Professional development, technical skills training, and certification programs.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 gradient-bg rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white font-bold text-sm">$500</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Supports mentorship programs</h4>
+                                <p class="text-gray-600 text-sm">One-on-one guidance, career counseling, and emotional support services.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <div class="bg-gradient-to-br from-coral/10 to-lavender/10 rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Ready to Make a Difference?</h3>
+                        <p class="text-gray-600 mb-8">Every donation directly impacts young women building their futures. See exactly how your contribution is making a difference.</p>
+                        <a href="/donations" class="gradient-bg text-white px-8 py-4 rounded-full text-lg font-bold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-block">
+                            View Donation Tracker
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enrollment Section -->
+    <section id="enrollment" class="py-20 gradient-bg text-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-black mb-6">Your Story Starts Here</h2>
+            <div class="w-20 h-1 bg-white mx-auto mb-8"></div>
+            <p class="text-xl mb-12 leading-relaxed">
+                Ready to begin your four-year journey of growth, community, and transformation? Our application process is designed like the first chapter of your story.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold text-xl">1</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Complete Application</h3>
+                    <p class="text-white/80 text-sm">Share your story through our interactive application experience.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold text-xl">2</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Interview & Assessment</h3>
+                    <p class="text-white/80 text-sm">Personal interview to understand your goals and needs.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold text-xl">3</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Begin Your Journey</h3>
+                    <p class="text-white/80 text-sm">Start your first year with orientation and foundation building.</p>
+                </div>
+            </div>
+
+            <a href="/apply.html" class="bg-white text-coral px-10 py-5 rounded-full text-xl font-bold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-block">
+                Begin Your Application
+            </a>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="py-20 bg-gray-50 leaf-pattern">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-gradient mb-6">Our Community</h2>
+                <div class="w-20 h-1 gradient-bg mx-auto mb-8"></div>
+                <p class="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                    Hear from the women who have walked this path and are now building the futures they dreamed of.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                    <div class="mb-4">
+                        <div class="flex text-coral mb-2">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">
+                        "Sjòne Shrine gave me more than skills - it gave me a family and the confidence to know I could build the life I wanted. I'm now a program coordinator helping other young women."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 gradient-bg rounded-full flex items-center justify-center mr-3">
+                            <span class="text-white font-bold text-sm">M</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Maya</h4>
+                            <p class="text-gray-500 text-sm">Graduate, Class of 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                    <div class="mb-4">
+                        <div class="flex text-coral mb-2">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">
+                        "The financial literacy program changed everything for me. I went from living paycheck to paycheck to saving for my own business. The mentorship was incredible."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 gradient-bg rounded-full flex items-center justify-center mr-3">
+                            <span class="text-white font-bold text-sm">S</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Sarah</h4>
+                            <p class="text-gray-500 text-sm">Graduate, Class of 2022</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                    <div class="mb-4">
+                        <div class="flex text-coral mb-2">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4 italic">
+                        "I came in feeling lost and scared about my future. Now I'm in my third year, leading workshops for newer participants and studying to become a social worker."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 gradient-bg rounded-full flex items-center justify-center mr-3">
+                            <span class="text-white font-bold text-sm">A</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Aisha</h4>
+                            <p class="text-gray-500 text-sm">Current Participant, Year 3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-black text-gradient mb-6">Get In Touch</h2>
+            <div class="w-20 h-1 gradient-bg mx-auto mb-8"></div>
+            <p class="text-xl text-gray-700 mb-12 leading-relaxed">
+                Have questions about our program, application process, or how you can get involved? We're here to help.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Contact Information</h3>
+                    <div class="space-y-4 text-left">
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-coral mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <span class="text-gray-700">info@sjoneshrine.org</span>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <svg class="w-6 h-6 text-coral mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span class="text-gray-700">(555) 123-4567</span>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <svg class="w-6 h-6 text-coral mr-3 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="text-gray-700">123 Community Street<br>Supportive City, SC 29401</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Quick Links</h3>
+                    <div class="space-y-4">
+                        <a href="/apply.html" class="block gradient-bg text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                            Start Your Application
+                        </a>
+                        <a href="/donations" class="block border-2 border-coral text-coral px-6 py-3 rounded-lg font-semibold hover:bg-coral hover:text-white transition-all duration-300">
+                            View Donation Tracker
+                        </a>
+                        <a href="#programs" class="block text-coral hover:text-coral-dark font-semibold transition-colors">
+                            Learn About Our Programs
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center mr-3">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L8 8L12 12L16 8L12 2Z" fill="white"/>
+                                <path d="M2 12L8 8L12 12L8 16L2 12Z" fill="white"/>
+                                <path d="M22 12L16 8L12 12L16 16L22 12Z" fill="white"/>
+                                <path d="M12 22L8 16L12 12L16 16L12 22Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-black">Sjòne Shrine</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Supporting future leaders with armament to rise, and tools to stay.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Programs</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#programs" class="hover:text-white transition-colors">Four-Year Journey</a></li>
+                        <li><a href="#programs" class="hover:text-white transition-colors">Foundation Year</a></li>
+                        <li><a href="#programs" class="hover:text-white transition-colors">Leadership Development</a></li>
+                        <li><a href="#programs" class="hover:text-white transition-colors">Transition Support</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Get Involved</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/donations" class="hover:text-white transition-colors">Donate</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Volunteer</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Partner With Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Newsletter</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Apply</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/apply.html" class="hover:text-white transition-colors">Start Application</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Application FAQ</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Program Requirements</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Admissions</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">&copy; 2025 Sjòne Shrine Inc. All rights reserved.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle (if you add mobile menu later)
+        // Add any additional JavaScript functionality here
+    </script>
 </body>
 </html>
