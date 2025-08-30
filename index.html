@@ -1,164 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sjone Shrine</title>
-  <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #ede7f6, #f5f5f5);
-      margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-
-    .card {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      text-align: center;
-      width: 90%;
-      max-width: 500px;
-    }
-
-    h2 {
-      margin-bottom: 1rem;
-      font-size: 1.8rem;
-      color: #3f2b96;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      font-size: 1rem;
-    }
-
-    button {
-      padding: 12px 20px;
-      margin-top: 10px;
-      border: none;
-      background: #3f2b96;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 10px;
-      transition: background 0.2s;
-    }
-    button:hover {
-      background: #5f3dc4;
-    }
-
-    #error {
-      margin-top: 10px;
-      color: #a00;
-      font-size: 0.9rem;
-    }
-
-    #tabs {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .tab {
-      background: #f3f0ff;
-      border: 1px solid #ddd;
-      border-radius: 15px;
-      padding: 15px;
-      text-align: left;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-
-    .tab h3 {
-      margin-top: 0;
-      font-size: 1.2rem;
-      color: #3f2b96;
-    }
-
-    #logout {
-      margin-top: 25px;
-      background: #a00;
-    }
-    #logout:hover {
-      background: #c33;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Project Homepage</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Login card -->
-  <div id="login" class="card">
-    <h2>Login to Sjone Shrine</h2>
-    <input type="text" id="username" placeholder="Enter Username">
-    <input type="password" id="password" placeholder="Enter Password">
-    <button onclick="login()">Login</button>
-    <p id="error"></p>
-  </div>
+<header>
+    <h1>Welcome to My Project</h1>
+    <p>Access the tabs below for your interactive sections.</p>
+</header>
 
-  <!-- Content card -->
-  <div id="content" class="card" style="display: none;">
-    <h2>Welcome, <span id="userDisplay"></span>!</h2>
-    <div id="tabs"></div>
-    <button id="logout" onclick="logout()">Log Out</button>
-  </div>
+<main>
+    <h2>Explore Tabs</h2>
+    <p>Click the button below to open the interactive tabs page:</p>
+    <a class="button" href="tabs.html">Go to Tabs</a>
+</main>
 
-  <script>
-    const userPasswords = {
-      "user1": { password: "alpha123", allowedTabs: ["origin"] },
-      "user2": { password: "bravo456", allowedTabs: ["origin", "range"] },
-      "user3": { password: "charlie789", allowedTabs: ["origin", "range", "season"] },
-      "admin": { password: "wewelcomeyou", allowedTabs: ["origin", "range", "season", "performance", "action", "support"] }
-    };
-
-    const allTabs = {
-      origin: "Welcome to the Origin tab! This is where your journey begins.",
-      range: "You’ve unlocked the Range tab — new horizons await!",
-      season: "This is the Season tab — experience the cycles of growth.",
-      performance: "Performance tab — measure your progress here.",
-      action: "Action tab — take the next steps forward.",
-      support: "Support tab — resources and help are available here."
-    };
-
-    function login() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-      const user = userPasswords[username];
-
-      if (user && user.password === password) {
-        document.getElementById("login").style.display = "none";
-        document.getElementById("content").style.display = "block";
-        document.getElementById("userDisplay").innerText = username;
-
-        const tabsContainer = document.getElementById("tabs");
-        tabsContainer.innerHTML = "";
-
-        user.allowedTabs.forEach(tab => {
-          const div = document.createElement("div");
-          div.classList.add("tab");
-          div.innerHTML = `<h3>${tab.toUpperCase()}</h3><p>${allTabs[tab]}</p>`;
-          tabsContainer.appendChild(div);
-        });
-      } else {
-        document.getElementById("error").innerText = "Invalid username or password.";
-      }
-    }
-
-    function logout() {
-      document.getElementById("login").style.display = "block";
-      document.getElementById("content").style.display = "none";
-      document.getElementById("username").value = "";
-      document.getElementById("password").value = "";
-      document.getElementById("error").innerText = "";
-    }
-  </script>
 </body>
 </html>
