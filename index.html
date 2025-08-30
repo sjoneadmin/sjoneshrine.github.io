@@ -69,70 +69,53 @@
   }
 
   #error {
-    color: #F67E7F;
+    color: #F38180;
     margin-top: 10px;
   }
 
   #tabs-section {
     display: none;
-    padding: 2rem;
   }
 
-  #tabs-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+  .tabs {
+    display: flex;
+    background-color: #B6C3F7;
   }
 
-  .tab-card {
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
-    padding: 1.5rem;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .tab-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  }
-
-  .tab-card h3 {
-    margin-top: 0;
-    font-size: 1.5rem;
-    color: #3f2b96;
-  }
-
-  .tab-card p {
-    font-size: 1rem;
-    color: #555;
-  }
-
-  #tab-content {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
-    min-height: 150px;
-  }
-
-  #logout {
-    margin-top: 2rem;
-    padding: 15px;
-    width: 100%;
+  .tab-button {
+    flex: 1;
+    padding: 1rem;
     border: none;
-    border-radius: 12px;
-    background: #F67E7F;
+    background-color: #B6C3F7;
     color: #fff;
     font-size: 1.1rem;
     cursor: pointer;
     transition: background 0.2s;
   }
 
-  #logout:hover {
-    background: #f88a88;
+  .tab-button:hover {
+    background-color: #95a5e1;
+  }
+
+  .tab-button.logout {
+    background-color: #F38180;
+  }
+
+  .tab-button.logout:hover {
+    background-color: #F67E7F;
+  }
+
+  #tab-content {
+    padding: 2rem;
+    background: #fff;
+    min-height: 150px;
+    font-size: 1.2rem;
+    color: #333;
+  }
+
+  #tab-content strong {
+    font-weight: bold;
+    font-size: 1.3rem;
   }
 </style>
 </head>
@@ -153,20 +136,19 @@
 </div>
 
 <div id="tabs-section">
-  <div id="tabs-container">
-    <div class="tab-card" onclick="showTab('origin')"><h3>ORIGIN</h3></div>
-    <div class="tab-card" onclick="showTab('range')"><h3>RANGE</h3></div>
-    <div class="tab-card" onclick="showTab('season')"><h3>SEASON</h3></div>
-    <div class="tab-card" onclick="showTab('performance')"><h3>PERFORMANCE</h3></div>
-    <div class="tab-card" onclick="showTab('action')"><h3>ACTION</h3></div>
-    <div class="tab-card" onclick="showTab('support')"><h3>SUPPORT</h3></div>
+  <div class="tabs">
+    <button class="tab-button" onclick="showTab('origin')">ORIGIN</button>
+    <button class="tab-button" onclick="showTab('range')">RANGE</button>
+    <button class="tab-button" onclick="showTab('season')">SEASON</button>
+    <button class="tab-button" onclick="showTab('performance')">PERFORMANCE</button>
+    <button class="tab-button" onclick="showTab('action')">ACTION</button>
+    <button class="tab-button" onclick="showTab('support')">SUPPORT</button>
+    <button class="tab-button logout" onclick="logout()">LOGOUT</button>
   </div>
 
   <div id="tab-content">
     <p>Click a tab to see its content.</p>
   </div>
-
-  <button id="logout" onclick="logout()">Log Out</button>
 </div>
 
 <script>
@@ -185,12 +167,12 @@
   };
 
   const tabContents = {
-    origin: "Kimatrices:: full content here.",
-    range: "Airubie:: full content here.",
-    season: "Ohkoko!:: full content here.",
-    performance: "Armirror:: full content here.",
-    action: "Shhgest, Enroll, Afterschool full content here.",
-    support: "Tithe full content here."
+    origin: "<strong>Kimatrices</strong>",
+    range: "<strong>Airubie</strong>",
+    season: "<strong>Ohkoko!</strong>",
+    performance: "<strong>Armirror</strong>",
+    action: "<strong>Shhgest, Enroll, Afterschool</strong>",
+    support: "<strong>Tithe</strong>"
   };
 
   function login() {
@@ -207,7 +189,7 @@
 
   function showTab(tab) {
     const contentDiv = document.getElementById("tab-content");
-    contentDiv.innerHTML = `<h3>${tab.toUpperCase()}</h3><p>${tabContents[tab]}</p>`;
+    contentDiv.innerHTML = tabContents[tab];
   }
 
   function logout() {
