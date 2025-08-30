@@ -7,13 +7,13 @@
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
       margin: 0;
       padding: 0;
-      background: #f5f5f5;
     }
 
     header {
-      background: #333;
+      background-color: #333;
       color: #fff;
       padding: 1rem;
       text-align: center;
@@ -21,13 +21,13 @@
 
     .tabs {
       display: flex;
-      background: #444;
+      background-color: #444;
     }
 
     .tab-button {
       flex: 1;
       padding: 1rem;
-      background: #444;
+      background-color: #444;
       border: none;
       color: #fff;
       cursor: pointer;
@@ -37,7 +37,7 @@
     }
 
     .tab-button:hover {
-      background: #666;
+      background-color: #666;
     }
 
     .tab-button:hover::after {
@@ -46,7 +46,7 @@
       bottom: -25px;
       left: 50%;
       transform: translateX(-50%);
-      background: #222;
+      background-color: #222;
       color: #fff;
       padding: 3px 6px;
       border-radius: 5px;
@@ -57,12 +57,12 @@
     .tab-content {
       display: none;
       padding: 2rem;
-      background: #fff;
+      background-color: #fff;
       min-height: 200px;
     }
 
     .logout {
-      background: #c0392b !important;
+      background-color: #c0392b !important;
     }
   </style>
 </head>
@@ -73,7 +73,6 @@
   <p>Select a tab. Content is password-protected.</p>
 </header>
 
-<!-- Tabs -->
 <div class="tabs">
   <button class="tab-button" data-hover="Kimatrices::" onclick="openTab('origin')">ORIGIN</button>
   <button class="tab-button" data-hover="Airubie::" onclick="openTab('range')">RANGE</button>
@@ -84,65 +83,34 @@
   <button class="tab-button logout" onclick="logout()">LOGOUT</button>
 </div>
 
-<!-- Tab Contents -->
 <div id="origin" class="tab-content">
   <h2>ORIGIN</h2>
-  <p>Enter password to view content:</p>
-  <input type="password" id="pass-origin" placeholder="Enter password">
-  <button onclick="checkPassword('pass-origin','wewelcomeyou','origin-content')">Unlock</button>
-  <div id="origin-content" style="display:none; margin-top:1rem;">
-    <p>Content for ORIGIN tab.</p>
-  </div>
+  <p>Content for ORIGIN tab.</p>
 </div>
 
 <div id="range" class="tab-content">
   <h2>RANGE</h2>
-  <p>Enter password to view content:</p>
-  <input type="password" id="pass-range" placeholder="Enter password">
-  <button onclick="checkPassword('pass-range','wewelcomeyou','range-content')">Unlock</button>
-  <div id="range-content" style="display:none; margin-top:1rem;">
-    <p>Content for RANGE tab.</p>
-  </div>
+  <p>Content for RANGE tab.</p>
 </div>
 
 <div id="season" class="tab-content">
   <h2>SEASON</h2>
-  <p>Enter password to view content:</p>
-  <input type="password" id="pass-season" placeholder="Enter password">
-  <button onclick="checkPassword('pass-season','wewelcomeyou','season-content')">Unlock</button>
-  <div id="season-content" style="display:none; margin-top:1rem;">
-    <p>Content for SEASON tab.</p>
-  </div>
+  <p>Content for SEASON tab.</p>
 </div>
 
 <div id="performance" class="tab-content">
   <h2>PERFORMANCE</h2>
-  <p>Enter password to view content:</p>
-  <input type="password" id="pass-performance" placeholder="Enter password">
-  <button onclick="checkPassword('pass-performance','wewelcomeyou','performance-content')">Unlock</button>
-  <div id="performance-content" style="display:none; margin-top:1rem;">
-    <p>Content for PERFORMANCE tab.</p>
-  </div>
+  <p>Content for PERFORMANCE tab.</p>
 </div>
 
 <div id="action" class="tab-content">
   <h2>ACTION</h2>
-  <p>Enter password to view content:</p>
-  <input type="password" id="pass-action" placeholder="Enter password">
-  <button onclick="checkPassword('pass-action','wewelcomeyou','action-content')">Unlock</button>
-  <div id="action-content" style="display:none; margin-top:1rem;">
-    <p>Content for ACTION tab.</p>
-  </div>
+  <p>Content for ACTION tab.</p>
 </div>
 
 <div id="support" class="tab-content">
   <h2>SUPPORT</h2>
-  <p>Enter password to view content:</p>
-  <input type="password" id="pass-support" placeholder="Enter password">
-  <button onclick="checkPassword('pass-support','wewelcomeyou','support-content')">Unlock</button>
-  <div id="support-content" style="display:none; margin-top:1rem;">
-    <p>Content for SUPPORT tab.</p>
-  </div>
+  <p>Content for SUPPORT tab.</p>
 </div>
 
 <script>
@@ -150,15 +118,6 @@
     const contents = document.querySelectorAll('.tab-content');
     contents.forEach(content => content.style.display = 'none');
     document.getElementById(tabId).style.display = 'block';
-  }
-
-  function checkPassword(inputId, correctPassword, contentId) {
-    const entered = document.getElementById(inputId).value;
-    if (entered === correctPassword) {
-      document.getElementById(contentId).style.display = 'block';
-    } else {
-      alert("Incorrect password.");
-    }
   }
 
   function logout() {
