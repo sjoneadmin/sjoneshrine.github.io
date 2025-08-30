@@ -153,13 +153,15 @@
 
 <script>
   const users = {
-    "user1":  ["origin","range","season","performance","action","support"]
-    "admin": ["origin","range","season","performance","action","support"]
+    "user1": ["origin"],
+    "admin": ["origin","range","season","performance","action","support"],
+    "sjonekim": ["origin","range","season","performance","action","support"]
   };
 
   const passwords = {
-    "user1":"abc123",
-    "admin":"wewelcomeyou"
+    "user1": "abc123",
+    "admin": "wewelcomeyou",
+    "sjonekim": "wewelcomeyou"
   };
 
   const tabContents = {
@@ -174,12 +176,12 @@
   function login() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    if(users[username] && passwords[username]===password){
-      document.getElementById("login").style.display="none";
-      document.getElementById("tabs-section").style.display="block";
-      document.getElementById("error").innerText="";
+    if(users[username] && passwords[username] === password) {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("tabs-section").style.display = "block";
+      document.getElementById("error").innerText = "";
     } else {
-      document.getElementById("error").innerText="Invalid username or password.";
+      document.getElementById("error").innerText = "Invalid username or password.";
     }
   }
 
@@ -189,11 +191,11 @@
   }
 
   function logout() {
-    document.getElementById("login").style.display="flex";
-    document.getElementById("tabs-section").style.display="none";
-    document.getElementById("username").value="";
-    document.getElementById("password").value="";
-    document.getElementById("tab-content").innerHTML="<p>Click a tab to see its content.</p>";
+    document.getElementById("login").style.display = "flex";
+    document.getElementById("tabs-section").style.display = "none";
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("tab-content").innerHTML = "<p>Click a tab to see its content.</p>";
   }
 </script>
 
