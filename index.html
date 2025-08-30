@@ -1,23 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Project Homepage</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sjone Shrine</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    #login, #content {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    input[type="password"], input[type="text"] {
+      padding: 10px;
+      width: 80%;
+      margin: 10px 0;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #333;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background: #555;
+    }
+    .tab {
+      display: none;
+      margin: 20px 0;
+      padding: 15px;
+      border-radius: 8px;
+      background: #e9e9ff;
+    }
+    .visible {
+      display: block;
+    }
+    #logout {
+      margin-top: 20px;
+      background: #a00;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <h1>Welcome to My Project</h1>
-    <p>Access the tabs below for your interactive sections.</p>
-</header>
+  <div id="login">
+    <h2>Login to Sjone Shrine</h2>
+    <input type="text" id="username" placeholder="Enter Username"><br>
+    <input type="password" id="password" placeholder="Enter Password"><br>
+    <button onclick="login()">Login</button>
+    <p id="error" style="color: red;"></p>
+  </div>
 
-<main>
-    <h2>Explore Tabs</h2>
-    <p>Click the button below to open the interactive tabs page:</p>
-    <a class="button" href="tabs.html">Go to Tabs</a>
-</main>
+  <div id="content" style="display: none;">
+    <h2>Welcome, <span id="userDisplay"></span>!</h2>
+    <div id="tabs"></div>
+    <button id="logout" onclick="logout()">Log Out</button>
+  </div>
 
+  <script>
+    // Example users with passwords and allowed tabs
+    const userPasswords = {
+      "user1": { password: "alpha123", allowedTabs: ["origin"] },
+      "user2": { password: "bravo456", allowedTabs: ["origin", "range"] },
+      "user3": { password: "charlie789", allowedTabs: ["origin", "range", "season"] },
+      "admin": { password: "wewelcomeyou", allowedTabs: ["origin", "range", "season", "performance", "action", "support"] }
+    };
+
+    // Content for all possible tabs
+    const allTabs = {
+      origin: "Welcome to the Origin tab! This is where your journey begins.",
+      range: "You’ve unlocked the Range tab — new horizons await!",
+      season: "This is the Season tab — experience the cycles of growth.",
+      performance: "Performance tab — measure your progress here.",
+      action: "Action tab — take the next steps forward.",
+      support: "Support tab — resources and help are available here."
+    };
+
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const user = userPasswords[username];
+
+      if (user && user.password === password) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("content").style.display = "block";
+        document.getElementById("userDisplay").innerText = username;
+
+        const tabsContainer = document.getElementById("tabs");
+        tabsContainer.innerHTML = "";
+
+        user.allowedTabs.forEach(tab => {
+          const div = document.createElement("div");
+          div.classList.add("tab", "visible");
+          div.innerHTML = `<h3>${tab.toUpperCase()}</h3><p>${allTabs[tab]}</p>`;
+          tabsContainer.appendChild(div);
+        });
+      } else {
+        document.getElementById("error").innerText = "Invalid username or password.";
+      }
+    }
+
+    function logout() {
+      document.getElementById("login").style.display = "block";
+      document.getElementById("content").style.display = "none";
+      document.getElementById("username").value = "";
+      document.getElementById("password").value = "";
+      document.getElementById("error").innerText = "";
+    }
+  </script>
 </body>
 </html>
