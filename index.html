@@ -1,23 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Project Homepage</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sjone Shrine</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .tabs {
+      display: flex;
+      background-color: #444;
+    }
+
+    .tab-button {
+      flex: 1;
+      padding: 1rem;
+      background-color: #444;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .tab-button:hover {
+      background-color: #666;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 2rem;
+      background-color: #fff;
+      min-height: 200px;
+    }
+
+    .logout {
+      background-color: #c0392b !important;
+    }
+  </style>
 </head>
 <body>
 
 <header>
-    <h1>Welcome to My Project</h1>
-    <p>Access the tabs below for your interactive sections.</p>
+  <h1>Sjone Shrine</h1>
+  <p>Login below to access your tabs.</p>
 </header>
 
-<main>
-    <h2>Explore Tabs</h2>
-    <p>Click the button below to open the interactive tabs page:</p>
-    <a class="button" href="tabs.html">Go to Tabs</a>
-</main>
+<!-- Login -->
+<div id="login" style="text-align:center; margin:2rem;">
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+  <p id="error" style="color:red;"></p>
+</div>
+
+<!-- Tabs -->
+<div id="tabs-section" style="display:none;">
+  <div class="tabs">
+    <button class="tab-button" onclick="openTab('origin')">ORIGIN</button>
+    <button class="tab-button" onclick="openTab('range')">RANGE</button>
+    <button class="tab-button" onclick="openTab('season')">SEASON</button>
+    <button class="tab-button" onclick="openTab('performance')">PERFORMANCE</button>
+    <button class="tab-button" onclick="openTab('action')">ACTION</button>
+    <button class="tab-button" onclick="openTab('support')">SUPPORT</button>
+    <button class="tab-button logout" onclick="logout()">LOGOUT</button>
+  </div>
+
+  <!-- Tab Contents -->
+  <div id="origin" class="tab-content"><h2>ORIGIN</h2><p>Kimatrices:: full content here.</p></div>
+  <div id="range" class="tab-content"><h2>RANGE</h2><p>Airubie:: full content here.</p></div>
+  <div id="season" class="tab-content"><h2>SEASON</h2><p>Ohkoko!:: full content here.</p></div>
+  <div id="performance" class="tab-content"><h2>PERFORMANCE</h2><p>Armirror:: full content here.</p></div>
+  <div id="action" class="tab-content"><h2>ACTION</h2><p>Shhgest, Enroll, Afterschool full content here.</p></div>
+  <div id="support" class="tab-content"><h2>SUPPORT</h2><p>Tithe full content here.</p></div>
+</div>
+
+<script>
+  const users = {
+    "user1": ["origin"],
+    "user2": ["origin","range"],
+    "user3": ["origin","range","season"],
+    "admin": ["origin","range","season","performance","action","support"]
+  };
+
+  const passwords = {
+    "user1":"alpha123",
+    "user2":"bravo456",
+    "user3":"charlie789",
+    "admin":"wewelcomeyou"
+  };
+
+  function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    if(users[username] && passwords[username]===password){
+      document.getElementById("login").style.display="none";
+      document.getElementById("tabs-section").style.display="block";
+
+      // Hide tabs user is not allowed to see
+      const allowed = users[username];
+      document.querySelectorAll('.tab-button').forEach(btn=>{
+        const text = btn.innerText.toLowerCase();
+        if(text!=="logout" && !allowed.includes(text)){
+          btn.style.display="none";
+        }
+      });
+
+    } else {
+      document.getElementById("error").innerText="Invalid username or password.";
+    }
+  }
+
+  function openTab(id){
+    document.querySelectorAll('.tab-content').forEach(tc=>tc.style.display="none");
+    document.getElementById(id).style.display="block";
+  }
+
+  function logout(){
+    document.getElementById("login").style.display="block";
+    document.getElementById("tabs-section").style.display="none";
+    document.getElementById("username").value="";
+    document.getElementById("password").value="";
+    document.getElementById("error").innerText="";
+    document.querySelectorAll('.tab-button').forEach(btn=>btn.style.display="inline-block");
+  }
+</script>
 
 </body>
 </html>
