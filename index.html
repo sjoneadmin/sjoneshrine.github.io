@@ -117,6 +117,26 @@
     font-weight: bold;
     font-size: 1.3rem;
   }
+
+  .subtab-button {
+    padding: 8px 12px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #B6C3F7;
+    color: #fff;
+    font-size: 1rem;
+    transition: background 0.2s;
+  }
+
+  .subtab-button:hover {
+    background-color: #95a5e1;
+  }
+
+  #action-sub-content {
+    margin-top: 15px;
+  }
 </style>
 </head>
 <body>
@@ -169,8 +189,14 @@
     range: "<strong>Airubie</strong>",
     season: "<strong>Ohkoko!</strong>",
     performance: "<strong>Armirror</strong>",
-    action: "<strong>Shhgest, Enroll, Afterschool</strong>",
+    action: "<strong>Shhgest, After-school, App Pretty</strong>", // title shown before selecting subtabs
     support: "<strong>Tithe</strong>"
+  };
+
+  const actionSubTabs = {
+    "Shhgest": "Content for Shhgest goes here.",
+    "After-school": "Content for After-school goes here.",
+    "App Pretty": "Content for App Pretty goes here."
   };
 
   function login() {
@@ -187,7 +213,24 @@
 
   function showTab(tab) {
     const contentDiv = document.getElementById("tab-content");
-    contentDiv.innerHTML = tabContents[tab];
+
+    if (tab === "action") {
+      // Show subtabs for ACTION
+      contentDiv.innerHTML = `
+        <strong>ACTION</strong><br><br>
+        <button class="subtab-button" onclick="showActionSubTab('Shhgest')">Shhgest</button>
+        <button class="subtab-button" onclick="showActionSubTab('After-school')">After-school</button>
+        <button class="subtab-button" onclick="showActionSubTab('App Pretty')">App Pretty</button>
+        <div id="action-sub-content"></div>
+      `;
+    } else {
+      contentDiv.innerHTML = tabContents[tab];
+    }
+  }
+
+  function showActionSubTab(subtab) {
+    const subContentDiv = document.getElementById("action-sub-content");
+    subContentDiv.innerHTML = `<p>${actionSubTabs[subtab]}</p>`;
   }
 
   function logout() {
