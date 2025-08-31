@@ -1,201 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sjone Shrine</title>
-<style>
-  body {
-    font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(135deg, #ede7f6, #f5f5f5);
-    margin: 0;
-    padding: 0;
-  }
-  header {
-    text-align: center;
-    padding: 2rem 1rem;
-    background: #B6C3F7;
-    color: #fff;
-  }
-  h1 { margin: 0; font-size: 2rem; }
-  .login-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 70vh;
-  }
-  input {
-    width: 250px;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-  }
-  button {
-    padding: 12px 20px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-    background: #B6C3F7;
-    color: #fff;
-  }
-  button:hover { background: #95a5e1; }
-  #error { color: #a00; margin-top: 5px; }
-  nav {
-    display: flex;
-    justify-content: center;
-    background: #f3f0ff;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #ddd;
-  }
-  .tab {
-    margin: 0 10px;
-    padding: 10px 15px;
-    cursor: pointer;
-    position: relative;
-    border-radius: 8px;
-    transition: background 0.2s;
-  }
-  .tab:hover { background: #B6C3F7; color: #fff; }
-  .dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #f3f0ff;
-    border-radius: 8px;
-    min-width: 150px;
-    z-index: 10;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  }
-  .dropdown div {
-    padding: 10px;
-    cursor: pointer;
-  }
-  .dropdown div:hover { background: #B6C3F7; color: #fff; }
-  .tab:hover .dropdown { display: block; }
-  #tab-content {
-    padding: 2rem;
-    text-align: center;
-    font-size: 1.2rem;
-    color: #333;
-  }
-  #tab-content b { font-size: 1.5rem; }
-  #logout {
-    margin: 1rem auto;
-    display: block;
-    background: #F38180;
-  }
-  #logout:hover { background: #F67E7F; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sjone Shrine</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      padding: 10px;
+    }
+    .navbar a {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .navbar a:hover, .dropdown:hover .dropbtn {
+      background-color: #575757;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropbtn {
+      background-color: #333;
+      color: white;
+      padding: 14px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #444;
+      min-width: 160px;
+      z-index: 1;
+    }
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    .dropdown-content a:hover {
+      background-color: #666;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .content {
+      padding: 20px;
+    }
+    .hidden {
+      display: none;
+    }
+    .logout {
+      background-color: #F38180;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <h1>Sjone Shrine</h1>
-</header>
+  <!-- Login Form -->
+  <div id="loginDiv" class="content">
+    <h2>Login</h2>
+    <label>Username:</label><br>
+    <input type="text" id="username"><br><br>
+    <label>Password:</label><br>
+    <input type="password" id="password"><br><br>
+    <button onclick="login()">Login</button>
+    <p id="loginError" style="color:red;"></p>
+  </div>
 
-<div id="login" class="login-card">
-  <input type="text" id="username" placeholder="Username">
-  <input type="password" id="password" placeholder="Password">
-  <button onclick="login()">Login</button>
-  <p id="error"></p>
-</div>
+  <!-- Main Page -->
+  <div id="mainDiv" class="hidden">
+    <div class="navbar">
+      <div>
+        <a href="#" onclick="showContent('origin')">Origin</a>
+        <a href="#" onclick="showContent('range')">Range</a>
+        <a href="#" onclick="showContent('season')">Season</a>
+        <a href="#" onclick="showContent('performance')">Performance</a>
+        
+        <div class="dropdown">
+          <button class="dropbtn">Action</button>
+          <div class="dropdown-content">
+            <a href="#" onclick="showActionContent('Shhgest')">Shhgest</a>
+            <a href="#" onclick="showActionContent('After-school')">After-school</a>
+            <a href="#" onclick="showActionContent('App Pretty')">App Pretty</a>
+          </div>
+        </div>
 
-<div id="main-content" style="display:none;">
-  <nav>
-    <div class="tab" onclick="showTab('origin')">ORIGIN</div>
-    <div class="tab" onclick="showTab('range')">RANGE</div>
-    <div class="tab" onclick="showTab('season')">SEASON</div>
-    <div class="tab" onclick="showTab('performance')">PERFORMANCE</div>
-    <div class="tab">ACTION
-      <div class="dropdown">
-        <div onclick="showActionSubtab('Shhgest')">Shhgest</div>
-        <div onclick="showActionSubtab('After-school')">After-school</div>
-        <div onclick="showActionSubtab('App Pretty')">App Pretty</div>
+        <a href="#" onclick="showContent('support')">Support</a>
       </div>
+      <button class="logout" onclick="logout()">Logout</button>
     </div>
-    <div class="tab" onclick="showTab('support')">SUPPORT</div>
-    <div class="tab" id="logout" onclick="logout()">LOGOUT</div>
-  </nav>
 
-  <div id="tab-content"><p>Click a tab to see its content.</p></div>
-</div>
+    <div id="contentArea" class="content">
+      <h2>Welcome</h2>
+      <p>Select a tab to view content.</p>
+    </div>
+  </div>
 
-<script>
-const users = {
-  user1: { password: "abc123" },
-  admin: { password: "wewelcomeyou" },
-  sjonekim: { password: "wewelcomeyou" }
-};
+  <script>
+    // 🔹 User login credentials
+    const users = {
+      user1: "abc123",
+      admin: "wewelcomeyou",
+      sjonekim: "wewelcomeyou"
+    };
 
-const userContent = {
-  user1: {
-    origin: "Kimatrices::",
-    range: "Airubie::",
-    season: "Ohkoko!::",
-    performance: "Armirror::",
-    action: { "Shhgest": "Shhgest content for user1", "After-school": "After-school content for user1", "App Pretty": "App Pretty content for user1" },
-    support: "Tithe"
-  },
-  admin: {
-    origin: "Admin Origin content",
-    range: "Admin Range content",
-    season: "Admin Season content",
-    performance: "Admin Performance content",
-    action: { "Shhgest": "Admin Shhgest content", "After-school": "Admin After-school content", "App Pretty": "Admin App Pretty content" },
-    support: "Admin Tithe"
-  },
-  sjonekim: {
-    origin: "Sjonekim Origin content",
-    range: "Sjonekim Range content",
-    season: "Sjonekim Season content",
-    performance: "Sjonekim Performance content",
-    action: { "Shhgest": "Sjonekim Shhgest content", "After-school": "Sjonekim After-school content", "App Pretty": "Sjonekim App Pretty content" },
-    support: "Sjonekim Tithe"
-  }
-};
+    // 🔹 User-specific content shells
+    const userContent = {
+      user1: {
+        origin: "Kimatrices",
+        range: "Airubie",
+        season: "Ohkoko!",
+        performance: "Armirror",
+        action: {
+          "Shhgest": "",
+          "After-school": "",
+          "App Pretty": ""
+        },
+        support: "Tithe"
+      },
+      admin: {
+        origin: "Kimatrices",
+        range: "Airubie",
+        season: "Ohkoko!",
+        performance: "Armirror",
+        action: {
+          "Shhgest": "",
+          "After-school": "",
+          "App Pretty": ""
+        },
+        support: "Tithe"
+      },
+      sjonekim: {
+        origin: "Kimatrices",
+        range: "Airubie",
+        season: "Ohkoko!",
+        performance: "Armirror",
+        action: {
+          "Shhgest": "",
+          "After-school": "",
+          "App Pretty": ""
+        },
+        support: "Tithe"
+      }
+    };
 
-let currentUser = null;
+    let currentUser = null;
 
-function login() {
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-  if(users[username] && users[username].password === password) {
-    currentUser = username;
-    document.getElementById("login").style.display = "none";
-    document.getElementById("main-content").style.display = "block";
-    document.getElementById("tab-content").innerHTML = "<p>Click a tab to see its content.</p>";
-  } else {
-    document.getElementById("error").innerText = "Invalid username or password.";
-  }
-}
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
 
-function logout() {
-  currentUser = null;
-  document.getElementById("login").style.display = "flex";
-  document.getElementById("main-content").style.display = "none";
-  document.getElementById("username").value = "";
-  document.getElementById("password").value = "";
-  document.getElementById("tab-content").innerHTML = "<p>Click a tab to see its content.</p>";
-}
+      if (users[username] && users[username] === password) {
+        currentUser = username;
+        document.getElementById("loginDiv").classList.add("hidden");
+        document.getElementById("mainDiv").classList.remove("hidden");
+        document.getElementById("loginError").innerText = "";
+      } else {
+        document.getElementById("loginError").innerText = "Invalid username or password.";
+      }
+    }
 
-function showTab(tabName) {
-  if(!currentUser) return;
-  const content = userContent[currentUser][tabName];
-  document.getElementById("tab-content").innerHTML = `<b>${content}</b>`;
-}
+    function logout() {
+      currentUser = null;
+      document.getElementById("loginDiv").classList.remove("hidden");
+      document.getElementById("mainDiv").classList.add("hidden");
+    }
 
-function showActionSubtab(subtab) {
-  if(!currentUser) return;
-  const content = userContent[currentUser].action[subtab];
-  document.getElementById("tab-content").innerHTML = `<b>${content}</b>`;
-}
-</script>
+    function showContent(tab) {
+      if (currentUser && userContent[currentUser][tab] !== undefined) {
+        document.getElementById("contentArea").innerHTML = `
+          <h2>${userContent[currentUser][tab]}</h2>
+        `;
+      }
+    }
+
+    function showActionContent(subTab) {
+      if (currentUser && userContent[currentUser].action[subTab] !== undefined) {
+        document.getElementById("contentArea").innerHTML = `
+          <h2>${subTab}</h2>
+          <p>${userContent[currentUser].action[subTab]}</p>
+        `;
+      }
+    }
+  </script>
 
 </body>
 </html>
