@@ -7,242 +7,194 @@
 <style>
   body {
     font-family: "Segoe UI", sans-serif;
-    background: #EAF0FB;
+    background: linear-gradient(135deg, #ede7f6, #f5f5f5);
     margin: 0;
     padding: 0;
   }
-
   header {
     text-align: center;
     padding: 2rem 1rem;
     background: #B6C3F7;
     color: #fff;
   }
-
-  header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-  }
-
-  #login {
+  h1 { margin: 0; font-size: 2rem; }
+  .login-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 60vh;
+    min-height: 70vh;
   }
-
-  .login-card {
-    background: #fff;
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-  }
-
-  .login-card input {
-    width: 100%;
-    padding: 15px;
+  input {
+    width: 250px;
+    padding: 12px;
     margin: 10px 0;
-    border-radius: 12px;
+    border-radius: 10px;
     border: 1px solid #ccc;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
-
-  .login-card button {
-    padding: 15px 0;
+  button {
+    padding: 12px 20px;
     margin-top: 10px;
-    width: 100%;
     border: none;
-    border-radius: 12px;
-    font-size: 1.1rem;
+    border-radius: 10px;
+    font-size: 1rem;
     cursor: pointer;
     background: #B6C3F7;
     color: #fff;
-    transition: background 0.2s;
   }
-
-  .login-card button:hover {
-    background: #95a5e1;
-  }
-
-  #error {
-    color: #F38180;
-    margin-top: 10px;
-  }
-
-  #tabs-section {
-    display: none;
-  }
-
-  .tabs {
+  button:hover { background: #95a5e1; }
+  #error { color: #a00; margin-top: 5px; }
+  nav {
     display: flex;
-    background-color: #B6C3F7;
-    position: relative;
+    justify-content: center;
+    background: #f3f0ff;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
   }
-
-  .tab-button {
-    flex: 1;
-    padding: 1rem;
-    border: none;
-    background-color: #B6C3F7;
-    color: #fff;
-    font-size: 1.1rem;
+  .tab {
+    margin: 0 10px;
+    padding: 10px 15px;
     cursor: pointer;
+    position: relative;
+    border-radius: 8px;
     transition: background 0.2s;
-    position: relative;
   }
-
-  .tab-button:hover {
-    background-color: #95a5e1;
-  }
-
-  .tab-button.logout {
-    background-color: #F38180;
-  }
-  .tab-button.logout:hover {
-    background-color: #F67E7F;
-  }
-
-  /* Dropdown styling */
+  .tab:hover { background: #B6C3F7; color: #fff; }
   .dropdown {
-    position: relative;
-  }
-
-  .dropdown-content {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #B6C3F7;
-    min-width: 180px;
+    background: #f3f0ff;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    z-index: 1000;
-    flex-direction: column;
+    min-width: 150px;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
-
-  .dropdown-content a {
-    padding: 10px 15px;
-    text-decoration: none;
-    color: #fff;
-    display: block;
-    transition: background 0.2s;
+  .dropdown div {
+    padding: 10px;
+    cursor: pointer;
   }
-
-  .dropdown-content a:hover {
-    background-color: #95a5e1;
-  }
-
-  .dropdown:hover .dropdown-content {
-    display: flex;
-    flex-direction: column;
-  }
-
+  .dropdown div:hover { background: #B6C3F7; color: #fff; }
+  .tab:hover .dropdown { display: block; }
   #tab-content {
     padding: 2rem;
-    background: #fff;
-    min-height: 150px;
+    text-align: center;
     font-size: 1.2rem;
     color: #333;
   }
-
-  #tab-content strong {
-    font-weight: bold;
-    font-size: 1.3rem;
+  #tab-content b { font-size: 1.5rem; }
+  #logout {
+    margin: 1rem auto;
+    display: block;
+    background: #F38180;
   }
+  #logout:hover { background: #F67E7F; }
 </style>
 </head>
 <body>
 
 <header>
   <h1>Sjone Shrine</h1>
-  <p>Login to access your tabs</p>
 </header>
 
-<div id="login">
-  <div class="login-card">
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-    <p id="error"></p>
-  </div>
+<div id="login" class="login-card">
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+  <p id="error"></p>
 </div>
 
-<div id="tabs-section">
-  <div class="tabs">
-    <button class="tab-button" onclick="showTab('origin')">ORIGIN</button>
-    <button class="tab-button" onclick="showTab('range')">RANGE</button>
-    <button class="tab-button" onclick="showTab('season')">SEASON</button>
-    <button class="tab-button" onclick="showTab('performance')">PERFORMANCE</button>
-
-    <!-- ACTION with dropdown -->
-    <div class="dropdown">
-      <button class="tab-button">ACTION ▾</button>
-      <div class="dropdown-content">
-        <a href="shhgest.html">Shhgest</a>
-        <a href="afterschool.html">After-school</a>
-        <a href="apppretty.html">App Pretty</a>
+<div id="main-content" style="display:none;">
+  <nav>
+    <div class="tab" onclick="showTab('origin')">ORIGIN</div>
+    <div class="tab" onclick="showTab('range')">RANGE</div>
+    <div class="tab" onclick="showTab('season')">SEASON</div>
+    <div class="tab" onclick="showTab('performance')">PERFORMANCE</div>
+    <div class="tab">ACTION
+      <div class="dropdown">
+        <div onclick="showActionSubtab('Shhgest')">Shhgest</div>
+        <div onclick="showActionSubtab('After-school')">After-school</div>
+        <div onclick="showActionSubtab('App Pretty')">App Pretty</div>
       </div>
     </div>
+    <div class="tab" onclick="showTab('support')">SUPPORT</div>
+    <div class="tab" id="logout" onclick="logout()">LOGOUT</div>
+  </nav>
 
-    <button class="tab-button" onclick="showTab('support')">SUPPORT</button>
-    <button class="tab-button logout" onclick="logout()">LOGOUT</button>
-  </div>
-
-  <div id="tab-content">
-    <p>Click a tab to see its content.</p>
-  </div>
+  <div id="tab-content"><p>Click a tab to see its content.</p></div>
 </div>
 
 <script>
-  const users = {
-    "user1": ["origin"],
-    "admin": ["origin","range","season","performance","action","support"],
-    "sjonekim": ["origin","range","season","performance","action","support"]
-  };
+const users = {
+  user1: { password: "abc123" },
+  admin: { password: "wewelcomeyou" },
+  sjonekim: { password: "wewelcomeyou" }
+};
 
-  const passwords = {
-    "user1": "abc123",
-    "admin": "wewelcomeyou",
-    "sjonekim": "wewelcomeyou"
-  };
-
-  const tabContents = {
-    origin: "<strong>Kimatrices</strong>",
-    range: "<strong>Airubie</strong>",
-    season: "<strong>Ohkoko!</strong>",
-    performance: "<strong>Armirror</strong>",
-    action: "<strong>Shhgest, After-school, App Pretty</strong>",
-    support: "<strong>Tithe</strong>"
-  };
-
-  function login() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    if(users[username] && passwords[username] === password) {
-      document.getElementById("login").style.display = "none";
-      document.getElementById("tabs-section").style.display = "block";
-      document.getElementById("error").innerText = "";
-    } else {
-      document.getElementById("error").innerText = "Invalid username or password.";
-    }
+const userContent = {
+  user1: {
+    origin: "Kimatrices::",
+    range: "Airubie::",
+    season: "Ohkoko!::",
+    performance: "Armirror::",
+    action: { "Shhgest": "Shhgest content for user1", "After-school": "After-school content for user1", "App Pretty": "App Pretty content for user1" },
+    support: "Tithe"
+  },
+  admin: {
+    origin: "Admin Origin content",
+    range: "Admin Range content",
+    season: "Admin Season content",
+    performance: "Admin Performance content",
+    action: { "Shhgest": "Admin Shhgest content", "After-school": "Admin After-school content", "App Pretty": "Admin App Pretty content" },
+    support: "Admin Tithe"
+  },
+  sjonekim: {
+    origin: "Sjonekim Origin content",
+    range: "Sjonekim Range content",
+    season: "Sjonekim Season content",
+    performance: "Sjonekim Performance content",
+    action: { "Shhgest": "Sjonekim Shhgest content", "After-school": "Sjonekim After-school content", "App Pretty": "Sjonekim App Pretty content" },
+    support: "Sjonekim Tithe"
   }
+};
 
-  function showTab(tab) {
-    const contentDiv = document.getElementById("tab-content");
-    contentDiv.innerHTML = tabContents[tab];
-  }
+let currentUser = null;
 
-  function logout() {
-    document.getElementById("login").style.display = "flex";
-    document.getElementById("tabs-section").style.display = "none";
-    document.getElementById("username").value = "";
-    document.getElementById("password").value = "";
+function login() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+  if(users[username] && users[username].password === password) {
+    currentUser = username;
+    document.getElementById("login").style.display = "none";
+    document.getElementById("main-content").style.display = "block";
     document.getElementById("tab-content").innerHTML = "<p>Click a tab to see its content.</p>";
+  } else {
+    document.getElementById("error").innerText = "Invalid username or password.";
   }
+}
+
+function logout() {
+  currentUser = null;
+  document.getElementById("login").style.display = "flex";
+  document.getElementById("main-content").style.display = "none";
+  document.getElementById("username").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("tab-content").innerHTML = "<p>Click a tab to see its content.</p>";
+}
+
+function showTab(tabName) {
+  if(!currentUser) return;
+  const content = userContent[currentUser][tabName];
+  document.getElementById("tab-content").innerHTML = `<b>${content}</b>`;
+}
+
+function showActionSubtab(subtab) {
+  if(!currentUser) return;
+  const content = userContent[currentUser].action[subtab];
+  document.getElementById("tab-content").innerHTML = `<b>${content}</b>`;
+}
 </script>
 
 </body>
