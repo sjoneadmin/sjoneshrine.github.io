@@ -1,207 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sjone Shrine</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f8f9fa;
-    }
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #333;
-      padding: 10px;
-    }
-    .navbar a {
-      color: white;
-      padding: 14px 20px;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .navbar a:hover, .dropdown:hover .dropbtn {
-      background-color: #575757;
-    }
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-    .dropbtn {
-      background-color: #333;
-      color: white;
-      padding: 14px 20px;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #444;
-      min-width: 160px;
-      z-index: 1;
-    }
-    .dropdown-content a {
-      color: white;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-    .dropdown-content a:hover {
-      background-color: #666;
-    }
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-    .content {
-      padding: 20px;
-    }
-    .hidden {
-      display: none;
-    }
-    .logout {
-      background-color: #F38180;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sjone Shrine</title>
+<style>
+  body {
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #ede7f6, #f5f5f5);
+    margin: 0;
+    padding: 0;
+  }
+  /* Navbar / Tabs */
+  .navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #3f2b96;
+    padding: 10px 20px;
+  }
+  .navbar a, .dropbtn {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-right: 10px;
+    background-color: #B6C3F7;
+    transition: background 0.2s;
+  }
+  .navbar a:hover, .dropbtn:hover {
+    background-color: #9FA8F7;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #B6C3F7;
+    min-width: 160px;
+    border-radius: 8px;
+    z-index: 1;
+  }
+  .dropdown-content a {
+    display: block;
+    padding: 10px 14px;
+    color: #3f2b96;
+    text-decoration: none;
+    font-weight: normal;
+  }
+  .dropdown-content a:hover {
+    background-color: #9FA8F7;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  .content {
+    padding: 30px;
+    text-align: center;
+  }
+  .hidden {
+    display: none;
+  }
+  input {
+    padding: 12px;
+    font-size: 16px;
+    width: 250px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #B6C3F7;
+    color: #3f2b96;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+  button:hover {
+    background-color: #9FA8F7;
+  }
+  .logout {
+    background-color: #F67E7F;
+    color: white;
+    margin-left: auto;
+  }
+</style>
 </head>
 <body>
 
-  <!-- Login Form -->
-  <div id="loginDiv" class="content">
-    <h2>Login</h2>
-    <label>Username:</label><br>
-    <input type="text" id="username"><br><br>
-    <label>Password:</label><br>
-    <input type="password" id="password"><br><br>
-    <button onclick="login()">Login</button>
-    <p id="loginError" style="color:red;"></p>
-  </div>
+<!-- Login Form -->
+<div id="loginDiv" class="content">
+  <h2>Sjone Shrine Login</h2>
+  <input type="text" id="username" placeholder="Username"><br>
+  <input type="password" id="password" placeholder="Password"><br><br>
+  <button onclick="login()">Login</button>
+  <p id="loginError" style="color:red;"></p>
+</div>
 
-  <!-- Main Page -->
-  <div id="mainDiv" class="hidden">
-    <div class="navbar">
-      <div>
-        <a href="#" onclick="showContent('origin')">Origin</a>
-        <a href="#" onclick="showContent('range')">Range</a>
-        <a href="#" onclick="showContent('season')">Season</a>
-        <a href="#" onclick="showContent('performance')">Performance</a>
-        
-        <div class="dropdown">
-          <button class="dropbtn">Action</button>
-          <div class="dropdown-content">
-            <a href="#" onclick="showActionContent('Shhgest')">Shhgest</a>
-            <a href="#" onclick="showActionContent('After-school')">After-school</a>
-            <a href="#" onclick="showActionContent('App Pretty')">App Pretty</a>
-          </div>
-        </div>
+<!-- Main Page -->
+<div id="mainDiv" class="hidden">
+  <div class="navbar">
+    <a href="#" onclick="showContent('origin')">Origin</a>
+    <a href="#" onclick="showContent('range')">Range</a>
+    <a href="#" onclick="showContent('season')">Season</a>
+    <a href="#" onclick="showContent('performance')">Performance</a>
 
-        <a href="#" onclick="showContent('support')">Support</a>
+    <div class="dropdown">
+      <button class="dropbtn">Action</button>
+      <div class="dropdown-content">
+        <a href="#" onclick="showActionContent('Shhgest')">Shhgest</a>
+        <a href="#" onclick="showActionContent('After-school')">After-school</a>
+        <a href="#" onclick="showActionContent('App Pretty')">App Pretty</a>
       </div>
-      <button class="logout" onclick="logout()">Logout</button>
     </div>
 
-    <div id="contentArea" class="content">
-      <h2>Welcome</h2>
-      <p>Select a tab to view content.</p>
-    </div>
+    <a href="#" onclick="showContent('support')">Support</a>
+    <button class="logout" onclick="logout()">Logout</button>
   </div>
 
-  <script>
-    // 🔹 User login credentials
-    const users = {
-      user1: "abc123",
-      admin: "wewelcomeyou",
-      sjonekim: "wewelcomeyou"
-    };
+  <div id="contentArea" class="content">
+    <h2>Welcome</h2>
+    <p>Select a tab to view content.</p>
+  </div>
+</div>
 
-    // 🔹 User-specific content shells
-    const userContent = {
-      user1: {
-        origin: "Kimatrices",
-        range: "Airubie",
-        season: "Ohkoko!",
-        performance: "Armirror",
-        action: {
-          "Shhgest": "",
-          "After-school": "",
-          "App Pretty": ""
-        },
-        support: "Tithe"
-      },
-      admin: {
-        origin: "Kimatrices",
-        range: "Airubie",
-        season: "Ohkoko!",
-        performance: "Armirror",
-        action: {
-          "Shhgest": "",
-          "After-school": "",
-          "App Pretty": ""
-        },
-        support: "Tithe"
-      },
-      sjonekim: {
-        origin: "Kimatrices",
-        range: "Airubie",
-        season: "Ohkoko!",
-        performance: "Armirror",
-        action: {
-          "Shhgest": "",
-          "After-school": "",
-          "App Pretty": ""
-        },
-        support: "Tithe"
-      }
-    };
+<script>
+  // User credentials
+  const users = {
+    user1: "abc123",
+    admin: "wewelcomeyou",
+    sjonekim: "wewelcomeyou"
+  };
 
-    let currentUser = null;
-
-    function login() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-
-      if (users[username] && users[username] === password) {
-        currentUser = username;
-        document.getElementById("loginDiv").classList.add("hidden");
-        document.getElementById("mainDiv").classList.remove("hidden");
-        document.getElementById("loginError").innerText = "";
-      } else {
-        document.getElementById("loginError").innerText = "Invalid username or password.";
-      }
+  // User-specific tab content
+  const userContent = {
+    user1: {
+      origin: "Kimatrices",
+      range: "Airubie",
+      season: "Ohkoko!",
+      performance: "Armirror",
+      action: { "Shhgest":"", "After-school":"", "App Pretty":"" },
+      support: "Tithe"
+    },
+    admin: {
+      origin: "Kimatrices",
+      range: "Airubie",
+      season: "Ohkoko!",
+      performance: "Armirror",
+      action: { "Shhgest":"", "After-school":"", "App Pretty":"" },
+      support: "Tithe"
+    },
+    sjonekim: {
+      origin: "Kimatrices",
+      range: "Airubie",
+      season: "Ohkoko!",
+      performance: "Armirror",
+      action: { "Shhgest":"", "After-school":"", "App Pretty":"" },
+      support: "Tithe"
     }
+  };
 
-    function logout() {
-      currentUser = null;
-      document.getElementById("loginDiv").classList.remove("hidden");
-      document.getElementById("mainDiv").classList.add("hidden");
-    }
+  let currentUser = null;
 
-    function showContent(tab) {
-      if (currentUser && userContent[currentUser][tab] !== undefined) {
-        document.getElementById("contentArea").innerHTML = `
-          <h2>${userContent[currentUser][tab]}</h2>
-        `;
-      }
-    }
+  function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-    function showActionContent(subTab) {
-      if (currentUser && userContent[currentUser].action[subTab] !== undefined) {
-        document.getElementById("contentArea").innerHTML = `
-          <h2>${subTab}</h2>
-          <p>${userContent[currentUser].action[subTab]}</p>
-        `;
-      }
+    if(users[username] && users[username] === password){
+      currentUser = username;
+      document.getElementById("loginDiv").classList.add("hidden");
+      document.getElementById("mainDiv").classList.remove("hidden");
+      document.getElementById("loginError").innerText = "";
+    } else {
+      document.getElementById("loginError").innerText = "Invalid username or password.";
     }
-  </script>
+  }
+
+  function logout() {
+    currentUser = null;
+    document.getElementById("loginDiv").classList.remove("hidden");
+    document.getElementById("mainDiv").classList.add("hidden");
+  }
+
+  function showContent(tab){
+    if(currentUser && userContent[currentUser][tab] !== undefined){
+      document.getElementById("contentArea").innerHTML = `<h2>${userContent[currentUser][tab]}</h2>`;
+    }
+  }
+
+  function showActionContent(subTab){
+    if(currentUser && userContent[currentUser].action[subTab] !== undefined){
+      document.getElementById("contentArea").innerHTML = `<h2>${subTab}</h2><p>${userContent[currentUser].action[subTab]}</p>`;
+    }
+  }
+</script>
 
 </body>
 </html>
