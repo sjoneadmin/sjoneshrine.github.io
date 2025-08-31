@@ -80,6 +80,7 @@
   .tabs {
     display: flex;
     background-color: #B6C3F7;
+    position: relative;
   }
 
   .tab-button {
@@ -91,6 +92,7 @@
     font-size: 1.1rem;
     cursor: pointer;
     transition: background 0.2s;
+    position: relative;
   }
 
   .tab-button:hover {
@@ -100,9 +102,43 @@
   .tab-button.logout {
     background-color: #F38180;
   }
-
   .tab-button.logout:hover {
     background-color: #F67E7F;
+  }
+
+  /* Dropdown styling */
+  .dropdown {
+    position: relative;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #B6C3F7;
+    min-width: 180px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    flex-direction: column;
+  }
+
+  .dropdown-content a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    transition: background 0.2s;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #95a5e1;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: flex;
+    flex-direction: column;
   }
 
   #tab-content {
@@ -116,26 +152,6 @@
   #tab-content strong {
     font-weight: bold;
     font-size: 1.3rem;
-  }
-
-  .subtab-button {
-    padding: 8px 12px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: #B6C3F7;
-    color: #fff;
-    font-size: 1rem;
-    transition: background 0.2s;
-  }
-
-  .subtab-button:hover {
-    background-color: #95a5e1;
-  }
-
-  #action-sub-content {
-    margin-top: 15px;
   }
 </style>
 </head>
@@ -161,7 +177,17 @@
     <button class="tab-button" onclick="showTab('range')">RANGE</button>
     <button class="tab-button" onclick="showTab('season')">SEASON</button>
     <button class="tab-button" onclick="showTab('performance')">PERFORMANCE</button>
-    <button class="tab-button" onclick="showTab('action')">ACTION</button>
+
+    <!-- ACTION with dropdown -->
+    <div class="dropdown">
+      <button class="tab-button">ACTION ▾</button>
+      <div class="dropdown-content">
+        <a href="shhgest.html">Shhgest</a>
+        <a href="afterschool.html">After-school</a>
+        <a href="apppretty.html">App Pretty</a>
+      </div>
+    </div>
+
     <button class="tab-button" onclick="showTab('support')">SUPPORT</button>
     <button class="tab-button logout" onclick="logout()">LOGOUT</button>
   </div>
@@ -189,14 +215,8 @@
     range: "<strong>Airubie</strong>",
     season: "<strong>Ohkoko!</strong>",
     performance: "<strong>Armirror</strong>",
-    action: "<strong>Shhgest, After-school, App Pretty</strong>", // title shown before selecting subtabs
+    action: "<strong>Shhgest, After-school, App Pretty</strong>",
     support: "<strong>Tithe</strong>"
-  };
-
-  const actionSubTabs = {
-    "Shhgest": "Content for Shhgest goes here.",
-    "After-school": "Content for After-school goes here.",
-    "App Pretty": "Content for App Pretty goes here."
   };
 
   function login() {
@@ -213,24 +233,7 @@
 
   function showTab(tab) {
     const contentDiv = document.getElementById("tab-content");
-
-    if (tab === "action") {
-      // Show subtabs for ACTION
-      contentDiv.innerHTML = `
-        <strong>ACTION</strong><br><br>
-        <button class="subtab-button" onclick="showActionSubTab('Shhgest')">Shhgest</button>
-        <button class="subtab-button" onclick="showActionSubTab('After-school')">After-school</button>
-        <button class="subtab-button" onclick="showActionSubTab('App Pretty')">App Pretty</button>
-        <div id="action-sub-content"></div>
-      `;
-    } else {
-      contentDiv.innerHTML = tabContents[tab];
-    }
-  }
-
-  function showActionSubTab(subtab) {
-    const subContentDiv = document.getElementById("action-sub-content");
-    subContentDiv.innerHTML = `<p>${actionSubTabs[subtab]}</p>`;
+    contentDiv.innerHTML = tabContents[tab];
   }
 
   function logout() {
