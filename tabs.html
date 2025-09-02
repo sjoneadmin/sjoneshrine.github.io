@@ -1,75 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sjone Shrine Tabs</title>
-<link rel="stylesheet" href="style.css">
-<style>
-body { font-family: "Segoe UI", sans-serif; background: #f5f5f5; margin:0; padding:0;}
-nav { display:flex; justify-content:center; background:#B6C3F7; padding:10px 0;}
-nav a { margin:0 15px; text-decoration:none; color:white; font-weight:bold; transition:color 0.2s; }
-nav a:hover { color:#ffffff; }
-#content { max-width:800px; margin:2rem auto; padding:1rem; text-align:center; }
-#logout { display:block; margin:2rem auto; padding:10px 20px; background:#F38180; border:none; border-radius:8px; color:white; font-weight:bold; cursor:pointer; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sjone Shrine Tabs</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ede7f6, #f5f5f5);
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .tab {
+      position: relative;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: color 0.2s;
+    }
+
+    .tab:hover {
+      color: white;
+      background-color: #B6C3F7;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 110%;
+      left: 0;
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      min-width: 150px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
+
+    .dropdown-item {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+
+    .dropdown-item:hover {
+      background: #B6C3F7;
+      color: white;
+    }
+
+    .tab-content {
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    #logout {
+      margin-top: 2rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #F38180;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #logout:hover {
+      background-color: #f67e7f;
+    }
+
+    strong {
+      font-size: 1.2rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+  </style>
 </head>
 <body>
 
-<nav>
-  <a href="#" data-tab="origin">ORIGIN</a>
-  <a href="#" data-tab="range">RANGE</a>
-  <a href="#" data-tab="season">SEASON</a>
-  <a href="#" data-tab="performance">PERFORMANCE</a>
-  <a href="#" data-tab="action">ACTION</a>
-  <a href="#" data-tab="support">SUPPORT</a>
-  <a href="#" id="logout">LOG OUT</a>
-</nav>
+  <div class="tabs">
+    <div class="tab" data-tab="origin">ORIGIN</div>
+    <div class="tab" data-tab="range">RANGE</div>
+    <div class="tab" data-tab="season">SEASON</div>
+    <div class="tab" data-tab="performance">PERFORMANCE</div>
+    <div class="tab" data-tab="action">ACTION
+      <div class="dropdown">
+        <div class="dropdown-item" data-subtab="shhgest">Shhgest</div>
+        <div class="dropdown-item" data-subtab="afterschool">After-school</div>
+        <div class="dropdown-item" data-subtab="apppretty">App Pretty</div>
+      </div>
+    </div>
+    <div class="tab" data-tab="support">SUPPORT</div>
+  </div>
 
-<div id="content">
-  <h2 id="tabTitle"></h2>
-  <p id="tabContent"></p>
-</div>
+  <div id="tab-content" class="tab-content">
+    <strong>Welcome</strong>
+    <p>Select a tab to view its content.</p>
+  </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script>
-const supabase = supabase.createClient(
-  "https://cfsiltbmocjsexmjzics.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNmc2lsdGJtb2Nqc2V4bWp6aWNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3NzgyODYsImV4cCI6MjA3MjM1NDI4Nn0._CqTpwg9MZwG1-RDiQhTcjbHIbn77A03x8-AKMacefo"
-);
+  <button id="logout" onclick="logout()">Log Out</button>
 
-let currentUser = localStorage.getItem('currentUser') || "user1"; // default demo
+  <script>
+    const tabContents = {
+      origin: "Kimatrices",
+      range: "Airubie",
+      season: "Ohkoko!",
+      performance: "Armirror",
+      shhgest: "Shhgest content here",
+      afterschool: "After-school content here",
+      apppretty: "App Pretty content here",
+      support: "Tithe"
+    };
 
-const tabFields = {
-  origin: "Kimatrices",
-  range: "Airubie",
-  season: "Ohkoko!",
-  performance: "Armirror",
-  action: "Shhgest, After-school, App Pretty",
-  support: "Tithe"
-};
+    const tabs = document.querySelectorAll('.tab');
+    const tabContentDiv = document.getElementById('tab-content');
 
-function loadTab(tab) {
-  const title = tabFields[tab] || "Unknown";
-  document.getElementById("tabTitle").innerHTML = `<strong>${title}</strong>`;
-  document.getElementById("tabContent").innerHTML = ""; // Future user-specific content can go here
-}
+    tabs.forEach(tab => {
+      const dropdown = tab.querySelector('.dropdown');
 
-document.querySelectorAll('nav a[data-tab]').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    loadTab(link.dataset.tab);
-  });
-});
+      // Show dropdown on hover for ACTION
+      if (dropdown) {
+        tab.addEventListener('mouseenter', () => {
+          dropdown.style.display = 'block';
+        });
+        tab.addEventListener('mouseleave', () => {
+          dropdown.style.display = 'none';
+        });
+      }
 
-document.getElementById('logout').addEventListener('click', () => {
-  localStorage.removeItem('currentUser');
-  window.location.href = "login.html";
-});
+      // Click event for main tabs
+      tab.addEventListener('click', (e) => {
+        if (tab.dataset.tab && !dropdown) {
+          const content = tabContents[tab.dataset.tab];
+          tabContentDiv.innerHTML = `<strong>${content}</strong>`;
+        }
+      });
 
-// Load first tab by default
-loadTab('origin');
-</script>
+      // Click event for dropdown items
+      if (dropdown) {
+        const items = dropdown.querySelectorAll('.dropdown-item');
+        items.forEach(item => {
+          item.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent triggering parent tab click
+            const content = tabContents[item.dataset.subtab];
+            tabContentDiv.innerHTML = `<strong>${content}</strong>`;
+          });
+        });
+      }
+    });
+
+    function logout() {
+      window.location.href = "index.html"; // Redirect to login page
+    }
+  </script>
 
 </body>
 </html>
