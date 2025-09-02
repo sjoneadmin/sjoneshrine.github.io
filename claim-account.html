@@ -1,78 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Claim Account - Sjòne Shrine</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #fdfbfb, #ebedee);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .card {
-      background: white;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      max-width: 420px;
-      width: 100%;
-      text-align: center;
-    }
-    h2 { margin-bottom: 1rem; color: #444; }
-    input, button {
-      width: 100%;
-      padding: 0.75rem;
-      margin: 0.5rem 0;
-      border-radius: 10px;
-      font-size: 1rem;
-      border: 1px solid #ddd;
-    }
-    button {
-      background-color: #B6C3F7;
-      color: white;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    button:hover { background-color: #7aa8ff; }
-    .note { font-size: 0.9rem; color: #666; margin-top: 0.5rem; }
-  </style>
-  <script src="https://unpkg.com/@supabase/supabase-js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claim Account - Sjone Shrine</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+const supabase = supabase.createClient(
+  "https://cfsiltbmocjsexmjzics.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNmc2lsdGJtb2Nqc2V4bWp6aWNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3NzgyODYsImV4cCI6MjA3MjM1NDI4Nn0._CqTpwg9MZwG1-RDiQhTcjbHIbn77A03x8-AKMacefo"
+);
+
+async function createAccount() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const { user, error } = await supabase.auth.signUp({ email, password });
+  if(error) {
+    alert(error.message);
+  } else {
+    alert("Account created! Check your email for confirmation.");
+    window.location.href = "tabs.html";
+  }
+}
+</script>
 </head>
 <body>
-  <div class="card">
-    <h2>Claim Your Account</h2>
-    <form id="claim-form">
-      <input type="email" id="email" placeholder="Email" required/>
-      <input type="password" id="password" placeholder="Create Password" required/>
-      <button type="submit">Create Account</button>
-    </form>
-    <p class="note">You can only claim an account after making a donation.</p>
-  </div>
-
-  <script>
-    const SUPABASE_URL = "https://cfsiltbmocjsexmjzics.supabase.co";
-    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNmc2lsdGJtb2Nqc2V4bWp6aWNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3NzgyODYsImV4cCI6MjA3MjM1NDI4Nn0._CqTpwg9MZwG1-RDiQhTcjbHIbn77A03x8-AKMacefo";
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-    const form = document.getElementById("claim-form");
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      const { data, error } = await supabase.auth.signUp({ email, password });
-      if (error) alert("Account creation failed: " + error.message);
-      else {
-        alert("Account created! You can now log in.");
-        window.location.href = "/login.html";
-      }
-    });
-  </script>
+<div class="card">
+  <h2>Claim Your Account</h2>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="createAccount()">Create Account</button>
+</div>
 </body>
 </html>
