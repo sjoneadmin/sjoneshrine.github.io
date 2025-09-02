@@ -1,99 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Protected Tabs</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-    .tabs { display: flex; background: #333; }
-    .tab { position: relative; }
-    .tab button {
-      background: #333; color: white; padding: 14px 20px;
-      border: none; cursor: pointer; font-size: 16px;
-    }
-    .tab button:hover { background: #444; }
-    .dropdown {
-      display: none; position: absolute; top: 48px; left: 0;
-      background: white; min-width: 160px; border: 1px solid #ddd; z-index: 1;
-    }
-    .dropdown a {
-      display: block; padding: 10px; text-decoration: none;
-      color: black; background: #f9f9f9;
-    }
-    .dropdown a:hover { background: #f1f1f1; }
-    .tab:hover .dropdown { display: block; }
-    .content { padding: 20px; display: none; }
-    .locked { color: red; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sjone Shrine Tabs</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body { font-family: "Segoe UI", sans-serif; background: #f5f5f5; margin:0; padding:0;}
+nav { display:flex; justify-content:center; background:#B6C3F7; padding:10px 0;}
+nav a { margin:0 15px; text-decoration:none; color:white; font-weight:bold; transition:color 0.2s; }
+nav a:hover { color:#ffffff; }
+#content { max-width:800px; margin:2rem auto; padding:1rem; text-align:center; }
+#logout { display:block; margin:2rem auto; padding:10px 20px; background:#F38180; border:none; border-radius:8px; color:white; font-weight:bold; cursor:pointer; }
+</style>
 </head>
 <body>
 
-<div class="tabs">
-  <div class="tab"><button onclick="showContent('origin')">Origin</button></div>
-  <div class="tab"><button onclick="showContent('range')">Range</button></div>
-  <div class="tab"><button onclick="showContent('seasons')">Seasons</button></div>
-  <div class="tab"><button onclick="showContent('performance')">Performance</button></div>
-  <div class="tab">
-    <button onclick="showContent('action')">Action</button>
-    <div class="dropdown">
-      <a href="#" onclick="showContent('shhgest')">Shhgest</a>
-      <a href="#" onclick="showContent('enroll')">Enroll</a>
-      <a href="#" onclick="showContent('afterschool')">Afterschool</a>
-    </div>
-  </div>
-  <div class="tab"><button onclick="showContent('support')">Support</button></div>
+<nav>
+  <a href="#" data-tab="origin">ORIGIN</a>
+  <a href="#" data-tab="range">RANGE</a>
+  <a href="#" data-tab="season">SEASON</a>
+  <a href="#" data-tab="performance">PERFORMANCE</a>
+  <a href="#" data-tab="action">ACTION</a>
+  <a href="#" data-tab="support">SUPPORT</a>
+  <a href="#" id="logout">LOG OUT</a>
+</nav>
+
+<div id="content">
+  <h2 id="tabTitle"></h2>
+  <p id="tabContent"></p>
 </div>
 
-<div id="content" class="content">
-  <p class="locked">This content is password protected.</p>
-  <input type="password" id="passwordInput" placeholder="Enter password">
-  <button onclick="unlockContent()">Submit</button>
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script>
-  // Store Base64 encoded password
-  const encodedPassword = "d2V3ZWxjb21leW91"; // "wewelcomeyou"
-  let activeTab = null;
+const supabase = supabase.createClient(
+  "https://cfsiltbmocjsexmjzics.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNmc2lsdGJtb2Nqc2V4bWp6aWNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3NzgyODYsImV4cCI6MjA3MjM1NDI4Nn0._CqTpwg9MZwG1-RDiQhTcjbHIbn77A03x8-AKMacefo"
+);
 
-  function showContent(tabName) {
-    activeTab = tabName;
-    const contentDiv = document.getElementById("content");
-    contentDiv.style.display = "block";
-    contentDiv.innerHTML = `
-      <p class="locked">This content is password protected.</p>
-      <input type="password" id="passwordInput" placeholder="Enter password">
-      <button onclick="unlockContent()">Submit</button>
-    `;
-  }
+let currentUser = localStorage.getItem('currentUser') || "user1"; // default demo
 
-  function unlockContent() {
-    const input = document.getElementById("passwordInput").value;
-    const decodedPassword = atob(encodedPassword);
+const tabFields = {
+  origin: "Kimatrices",
+  range: "Airubie",
+  season: "Ohkoko!",
+  performance: "Armirror",
+  action: "Shhgest, After-school, App Pretty",
+  support: "Tithe"
+};
 
-    if (input === decodedPassword) {
-      const contentDiv = document.getElementById("content");
-      let message = "";
+function loadTab(tab) {
+  const title = tabFields[tab] || "Unknown";
+  document.getElementById("tabTitle").innerHTML = `<strong>${title}</strong>`;
+  document.getElementById("tabContent").innerHTML = ""; // Future user-specific content can go here
+}
 
-      switch (activeTab) {
-        case "origin": message = "<h2>Kimatrices</h2>"; break;
-        case "range": message = "<h2>Airubie</h2>"; break;
-        case "seasons": message = "<h2>Ohkoko!</h2>"; break;
-        case "performance": message = "<h2>Armirror</h2>"; break;
-        case "action": message = "<h2>Action</h2><p>Select from Shhgest, Enroll, or Afterschool.</p>"; break;
-        case "shhgest": message = "<h2>Shhgest</h2>"; break;
-        case "enroll": message = "<h2>Enroll</h2>"; break;
-        case "afterschool": message = "<h2>Afterschool</h2>"; break;
-        case "support": message = "<h2>Tithe</h2>"; break;
-        default: message = "<h2>Unknown Tab</h2>";
-      }
+document.querySelectorAll('nav a[data-tab]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    loadTab(link.dataset.tab);
+  });
+});
 
-      contentDiv.innerHTML = message;
-    } else {
-      alert("Incorrect password. Try again.");
-    }
-  }
+document.getElementById('logout').addEventListener('click', () => {
+  localStorage.removeItem('currentUser');
+  window.location.href = "login.html";
+});
+
+// Load first tab by default
+loadTab('origin');
 </script>
 
 </body>
