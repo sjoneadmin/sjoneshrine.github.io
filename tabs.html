@@ -5,132 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sjòne Shrine</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* NAVBAR */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #ede7f6;
-      padding: 10px 20px;
-      border-radius: 12px;
-    }
-
-    /* Tabs container */
-    .tabs {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-
-    /* Individual Tab */
-    .tab {
-      position: relative;
-      padding: 12px 20px;
-      background: #B6C3F7; 
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: #3f2b96; 
-      transition: color 0.2s;
-    }
-
-    /* Letters highlight on hover */
-    .tab:hover {
-      color: #ffffff; 
-    }
-
-    /* Dropdown menu */
-    .tab .dropdown {
-      display: none;
-      position: absolute;
-      top: 110%;
-      left: 0;
-      background: #B6C3F7;
-      border-radius: 12px;
-      min-width: 150px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      z-index: 1;
-      flex-direction: column;
-    }
-
-    .tab .dropdown div {
-      padding: 10px;
-      cursor: pointer;
-      font-weight: normal;
-      color: #3f2b96;
-      transition: color 0.2s;
-    }
-
-    .tab .dropdown div:hover {
-      color: #fff; 
-    }
-
-    .tab:hover .dropdown {
-      display: flex;
-    }
-
-    /* Logout button */
-    .logout-btn {
-      padding: 10px 18px;
-      border: none;
-      border-radius: 12px;
-      background: #ede7f6;
-      color: #3f2b96;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .logout-btn:hover {
-      background: #B6C3F7;
-      color: #fff;
-    }
-
-    /* Main content */
-    .content {
-      margin: 40px auto;
-      text-align: center;
-      font-size: 20px;
-      color: #3f2b96;
-    }
-  </style>
 </head>
 <body>
-  <div class="navbar">
-    <div class="tabs">
-      <div class="tab">Range</div>
-      <div class="tab">Season</div>
-      <div class="tab">Performance</div>
-      <div class="tab">Support</div>
 
-      <!-- ACTION tab with dropdown -->
-      <div class="tab">
-        Action
-        <div class="dropdown">
-          <div onclick="location.href='shhgest.html'">Shhgest</div>
-          <div onclick="location.href='afterschool.html'">After-School</div>
-          <div onclick="location.href='apppretty.html'">App Pretty</div>
-        </div>
+  <!-- Navbar -->
+  <nav>
+    <a href="#origin">ORIGIN</a>
+    <a href="#range">RANGE</a>
+    <a href="#season">SEASON</a>
+    <a href="#performance">PERFORMANCE</a>
+
+    <!-- Dropdown for ACTION -->
+    <div class="dropdown">
+      <button class="dropbtn">ACTION</button>
+      <div class="dropdown-content">
+        <a href="shhgest.html">Shhgest</a>
+        <a href="afterschool.html">After-school</a>
+        <a href="apppretty.html">App Pretty</a>
       </div>
     </div>
 
-    <!-- Logout Button -->
-    <button class="logout-btn" onclick="logout()">Logout</button>
-  </div>
+    <a href="#support">SUPPORT</a>
+    <a href="login.html" class="logout-btn">Logout</a>
+  </nav>
 
-  <div class="content">
-    <h1>Sjòne Shrine</h1>
-    <p>Welcome to your dashboard.</p>
-  </div>
+  <!-- Tab Content -->
+  <main>
+    <section id="origin">
+      <h2><b>Kimatrices</b></h2>
+    </section>
+    <section id="range">
+      <h2><b>Airubie</b></h2>
+    </section>
+    <section id="season">
+      <h2><b>Ohkoko!</b></h2>
+    </section>
+    <section id="performance">
+      <h2><b>Armirror</b></h2>
+    </section>
+    <section id="support">
+      <h2><b>Tithe</b></h2>
+    </section>
+  </main>
 
-  <script>
-    function logout() {
-      // Clear login session
-      localStorage.removeItem("loggedInUser");
-      window.location.href = "login.html"; // redirect to login
-    }
-  </script>
 </body>
 </html>
