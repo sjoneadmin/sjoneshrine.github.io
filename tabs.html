@@ -1,64 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sjòne Shrine Tabs</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sjòne Shrine</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ede7f6;
+      padding: 10px 20px;
+      border-radius: 12px;
+    }
+
+    /* Tabs container */
+    .tabs {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    /* Individual Tab */
+    .tab {
+      position: relative;
+      padding: 12px 20px;
+      background: #B6C3F7; 
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #3f2b96; 
+      transition: color 0.2s;
+    }
+
+    /* Letters highlight on hover */
+    .tab:hover {
+      color: #ffffff; 
+    }
+
+    /* Dropdown menu */
+    .tab .dropdown {
+      display: none;
+      position: absolute;
+      top: 110%;
+      left: 0;
+      background: #B6C3F7;
+      border-radius: 12px;
+      min-width: 150px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      z-index: 1;
+      flex-direction: column;
+    }
+
+    .tab .dropdown div {
+      padding: 10px;
+      cursor: pointer;
+      font-weight: normal;
+      color: #3f2b96;
+      transition: color 0.2s;
+    }
+
+    .tab .dropdown div:hover {
+      color: #fff; 
+    }
+
+    .tab:hover .dropdown {
+      display: flex;
+    }
+
+    /* Logout button */
+    .logout-btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 12px;
+      background: #ede7f6;
+      color: #3f2b96;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .logout-btn:hover {
+      background: #B6C3F7;
+      color: #fff;
+    }
+
+    /* Main content */
+    .content {
+      margin: 40px auto;
+      text-align: center;
+      font-size: 20px;
+      color: #3f2b96;
+    }
+  </style>
 </head>
 <body>
+  <div class="navbar">
+    <div class="tabs">
+      <div class="tab">Range</div>
+      <div class="tab">Season</div>
+      <div class="tab">Performance</div>
+      <div class="tab">Support</div>
 
-<div id="content" class="card">
-    <h2>Welcome, <span id="userDisplay"></span>!</h2>
-
-    <!-- Tabs Row -->
-    <div id="tabsRow">
-        <div class="tab" onclick="showContent('origin')">ORIGIN</div>
-        <div class="tab" onclick="showContent('range')">RANGE</div>
-        <div class="tab" onclick="showContent('season')">SEASON</div>
-        <div class="tab" onclick="showContent('performance')">PERFORMANCE</div>
-        <div class="tab">
-            ACTION
-            <div class="dropdown">
-                <div onclick="showContent('shhgest')">Shhgest</div>
-                <div onclick="showContent('afterschool')">After-school</div>
-                <div onclick="showContent('apppretty')">App Pretty</div>
-            </div>
+      <!-- ACTION tab with dropdown -->
+      <div class="tab">
+        Action
+        <div class="dropdown">
+          <div onclick="location.href='shhgest.html'">Shhgest</div>
+          <div onclick="location.href='afterschool.html'">After-School</div>
+          <div onclick="location.href='apppretty.html'">App Pretty</div>
         </div>
-        <div class="tab" onclick="showContent('support')">SUPPORT</div>
-        <div class="tab" id="logout" onclick="logout()">LOGOUT</div>
+      </div>
     </div>
 
-    <!-- Content Display -->
-    <div id="tabContent"></div>
-</div>
+    <!-- Logout Button -->
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
 
-<script>
-    const allTabs = {
-        origin: "Kimatrices",
-        range: "Airubie",
-        season: "Ohkoko!",
-        performance: "Armirror",
-        shhgest: "Shhgest",
-        afterschool: "After-school",
-        apppretty: "App Pretty",
-        support: "Tithe"
-    };
+  <div class="content">
+    <h1>Sjòne Shrine</h1>
+    <p>Welcome to your dashboard.</p>
+  </div>
 
-    // Example current user (replace with login logic)
-    const currentUser = "admin";
-    document.getElementById("userDisplay").innerText = currentUser;
-
-    function showContent(tabKey) {
-        const contentArea = document.getElementById("tabContent");
-        const contentText = allTabs[tabKey] || "";
-        contentArea.innerHTML = `<strong>${contentText}</strong>`;
-    }
-
+  <script>
     function logout() {
-        window.location.href = "login.html"; // redirect to login page
+      // Clear login session
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "login.html"; // redirect to login
     }
-</script>
-
+  </script>
 </body>
 </html>
