@@ -10,149 +10,167 @@
     font-family: "Segoe UI", sans-serif;
     background: #f5f5f5;
     margin: 0;
-    padding: 2rem;
+    padding: 0;
   }
 
-  .tabs-container {
+  /* Login card */
+  #login {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  #login input {
+    width: 300px;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+
+  #login button {
+    padding: 12px 25px;
+    margin-top: 10px;
+    border: none;
+    background-color: #B6C3F7;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  #login button:hover {
+    background-color: #9AADE3;
+  }
+
+  #error {
+    color: #a00;
+    margin-top: 8px;
+  }
+
+  /* Tabs container */
+  #content {
+    display: none;
+    padding: 20px;
+    background: #fff;
+  }
+
+  #tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
   }
 
   .tab {
+    padding: 12px 20px;
+    border-radius: 12px;
     cursor: pointer;
-    padding: 0.5rem 1rem;
+    background: transparent;
     transition: color 0.2s;
-    position: relative;
   }
 
   .tab:hover {
-    color: white;
-    background-color: #B6C3F7;
-    border-radius: 8px;
-  }
-
-  .logout-tab {
-    background: #ede7f6;       
-    border-radius: 20px;       
-    padding: 0.5rem 1rem;
-    color: #F38180;            
-    margin-left: auto;          
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .logout-tab:hover {
-    background: #F38180;       
-    color: white;
-  }
-
-  .tab-content {
-    margin-top: 2rem;
-    font-size: 1.1rem;
-    line-height: 1.5;
-  }
-
-  strong {
-    font-size: 1.2rem;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  /* Dropdown for ACTION tab */
-  .dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    min-width: 150px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    z-index: 10;
-  }
-
-  .dropdown-item {
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-  }
-
-  .dropdown-item:hover {
+    color: #fff;
     background: #B6C3F7;
-    color: white;
   }
 
-  /* Show dropdown on hover without affecting tab label */
-  .tab.action:hover .dropdown {
-    display: block;
+  #tabContent {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px 0;
+  }
+
+  /* Logout button styled like a tab */
+  #logout {
+    padding: 12px 20px;
+    border-radius: 12px;
+    background: #F38180;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+  }
+
+  #logout:hover {
+    background: #F67E7F;
   }
 </style>
 </head>
 <body>
 
-<div class="tabs-container">
-  <div class="tab" data-tab="origin">ORIGIN</div>
-  <div class="tab" data-tab="range">RANGE</div>
-  <div class="tab" data-tab="season">SEASON</div>
-  <div class="tab" data-tab="performance">PERFORMANCE</div>
-  
-  <div class="tab action" data-tab="action">ACTION
-    <div class="dropdown">
-      <div class="dropdown-item" data-subtab="shhgest">Shhgest</div>
-      <div class="dropdown-item" data-subtab="afterschool">After-school</div>
-      <div class="dropdown-item" data-subtab="apppretty">App Pretty</div>
-    </div>
-  </div>
-
-  <div class="tab" data-tab="support">SUPPORT</div>
-  <div class="logout-tab" id="logout">LOGOUT</div>
+<!-- Login Card -->
+<div id="login">
+  <h2>Login to Sjone Shrine</h2>
+  <input type="text" id="username" placeholder="Enter Username">
+  <input type="password" id="password" placeholder="Enter Password">
+  <button onclick="login()">Login</button>
+  <p id="error"></p>
 </div>
 
-<div id="tab-content" class="tab-content">
-  <strong>Welcome!</strong>
-  <p>Select a tab to view its content.</p>
+<!-- Tabs Content -->
+<div id="content">
+  <div id="tabs">
+    <div class="tab" onclick="showTab('origin')">ORIGIN</div>
+    <div class="tab" onclick="showTab('range')">RANGE</div>
+    <div class="tab" onclick="showTab('season')">SEASON</div>
+    <div class="tab" onclick="showTab('performance')">PERFORMANCE</div>
+    <div class="tab" onclick="showTab('action')">ACTION</div>
+    <div class="tab" onclick="showTab('support')">SUPPORT</div>
+    <button id="logout" onclick="logout()">Logout</button>
+  </div>
+  <div id="tabContent"></div>
 </div>
 
 <script>
-  const userContent = {
-    origin: "Kimatrices",
-    range: "Airubie",
-    season: "Ohkoko!",
-    performance: "Armirror",
-    action: {
-      shhgest: "Shhgest content goes here",
-      afterschool: "After-school content goes here",
-      apppretty: "App Pretty content goes here"
-    },
-    support: "Tithe"
-  };
+const userPasswords = {
+  "user1": { password: "abc123", allowedTabs: ["origin","range","season","performance","action","support"] },
+  "admin": { password: "wewelcomeyou", allowedTabs: ["origin","range","season","performance","action","support"] },
+  "sjonekim": { password: "wewelcomeyou", allowedTabs: ["origin","range","season","performance","action","support"] }
+};
 
-  const tabs = document.querySelectorAll('.tab[data-tab]');
-  const dropdownItems = document.querySelectorAll('.dropdown-item');
-  const tabContent = document.getElementById('tab-content');
-  const logout = document.getElementById('logout');
+const allTabs = {
+  origin: "Kimatrices",
+  range: "Airubie",
+  season: "Ohkoko!",
+  performance: "Armirror",
+  action: "Shhgest, After-school, App Pretty",
+  support: "Tithe"
+};
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const key = tab.getAttribute('data-tab');
-      if(key !== 'action'){
-        tabContent.innerHTML = `<strong>${userContent[key]}</strong>`;
-      }
-    });
-  });
+let currentUser = "";
 
-  dropdownItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const key = item.getAttribute('data-subtab');
-      tabContent.innerHTML = `<strong>${userContent.action[key]}</strong>`;
-    });
-  });
+function login() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+  const user = userPasswords[username];
 
-  logout.addEventListener('click', () => {
-    location.reload(); // simple logout reloads page
-  });
+  if(user && user.password === password) {
+    currentUser = username;
+    document.getElementById("login").style.display = "none";
+    document.getElementById("content").style.display = "block";
+    document.getElementById("tabContent").innerText = ""; // start blank
+  } else {
+    document.getElementById("error").innerText = "Invalid username or password.";
+  }
+}
+
+function logout() {
+  document.getElementById("login").style.display = "flex";
+  document.getElementById("content").style.display = "none";
+  document.getElementById("username").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("error").innerText = "";
+  document.getElementById("tabContent").innerText = "";
+  currentUser = "";
+}
+
+function showTab(tabName) {
+  if(currentUser && userPasswords[currentUser].allowedTabs.includes(tabName)) {
+    document.getElementById("tabContent").innerText = allTabs[tabName];
+  }
+}
 </script>
 
 </body>
