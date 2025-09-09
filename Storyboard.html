@@ -49,6 +49,22 @@
     .story-page.active {
       display: block;
     }
+
+    #claimAccount {
+      display: none;
+      margin-top: 20px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: none;
+      background: #F67E7F;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    #claimAccount:hover {
+      background: #f35f5f;
+    }
   </style>
 </head>
 <body>
@@ -56,7 +72,9 @@
   <div class="story-container">
     <div id="page1" class="story-page active">
       <h2>Welcome to the Storyboard</h2>
-      <p>Click "Next" to begin your journey.</p>
+      <p>Choose an option to start:</p>
+      <button onclick="startStoryboard()">Begin Storyboard</button>
+      <button onclick="goToLogin()">Login</button>
     </div>
 
     <div id="page2" class="story-page">
@@ -64,7 +82,22 @@
       <p>Content goes here.</p>
     </div>
 
-    <!-- Add more storyboard pages as needed -->
+    <div id="page3" class="story-page">
+      <h2>Page 3</h2>
+      <p>Content goes here.</p>
+    </div>
+
+    <div id="testPage" class="story-page">
+      <h2>Final Test</h2>
+      <p>Answer the questions to pass and claim your account.</p>
+      <label>Question 1: <input type="text" id="q1"></label><br><br>
+      <label>Question 2: <input type="text" id="q2"></label><br><br>
+      <label>Question 3: <input type="text" id="q3"></label><br><br>
+      <button onclick="submitTest()">Submit Test</button>
+      <p id="testResult"></p>
+    </div>
+
+    <button id="claimAccount" onclick="claimAccount()">Claim Account</button>
 
     <div class="navigation">
       <button id="prevBtn" onclick="prevPage()">Back</button>
@@ -75,29 +108,67 @@
   <script>
     const pages = document.querySelectorAll(".story-page");
     let currentPage = 0;
+    let testPassed = false;
 
     function showPage(index) {
       pages.forEach((page, i) => page.classList.remove("active"));
       pages[index].classList.add("active");
 
-      // Disable Back button on first page
-      document.getElementById("prevBtn").disabled = index === 0;
+      document.getElementById("prevBtn").disabled = (index === 0 || index === pages.length - 2); // disable back on first page and test page
     }
 
     function nextPage() {
       if (currentPage < pages.length - 1) {
         currentPage++;
         showPage(currentPage);
-      } else {
-        // Optional: show final test or "Claim Account" section
-        alert("End of storyboard. Test/Claim Account goes here.");
       }
     }
 
     function prevPage() {
-      if (currentPage > 0) {
+      if (currentPage > 0 && currentPage !== pages.length - 1) {
         currentPage--;
         showPage(currentPage);
+      }
+    }
+
+    function startStoryboard() {
+      currentPage = 1;
+      showPage(currentPage);
+    }
+
+    function goToLogin() {
+      window.location.href = "login.html";
+    }
+
+    function submitTest() {
+      const answers = {
+        q1: "answer1",
+        q2: "answer2",
+        q3: "answer3"
+      };
+      let score = 0;
+
+      if (document.getElementById("q1").value.trim().toLowerCase() === answers.q1) score++;
+      if (document.getElementById("q2").value.trim().toLowerCase() === answers.q2) score++;
+      if (document.getElementById("q3").value.trim().toLowerCase() === answers.q3) score++;
+
+      const percentage = (score / 3) * 100;
+      const resultText = document.getElementById("testResult");
+
+      if (percentage >= 90) {
+        testPassed = true;
+        resultText.innerHTML = `Congratulations! You scored ${percentage}%. You may claim your account.`;
+        document.getElementById("claimAccount").style.display = "inline-block";
+      } else {
+        testPassed = false;
+        resultText.innerHTML = `You scored ${percentage}%. Unfortunately, you did not pass. Try again in 6 months.`;
+        document.getElementById("claimAccount").style.display = "none";
+      }
+    }
+
+    function claimAccount() {
+      if (testPassed) {
+        window.location.href = "claim_account.html";
       }
     }
 
