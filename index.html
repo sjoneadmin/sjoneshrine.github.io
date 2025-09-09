@@ -16,6 +16,7 @@
       justify-content: center;
       min-height: 100vh;
     }
+
     .card {
       background: #fff;
       padding: 2rem;
@@ -25,42 +26,36 @@
       width: 90%;
       max-width: 500px;
     }
-    h2 { margin-bottom: 1rem; font-size: 1.8rem; color: #3f2b96; }
-    button {
-      padding: 12px 20px;
+
+    h1 {
+      color: #3f2b96;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
       margin: 10px;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-      background: #B6C3F7;
-      color: white;
+      border-radius: 12px;
+      background-color: #B6C3F7;
+      color: #fff;
+      text-decoration: none;
       font-weight: bold;
       transition: background 0.2s;
     }
-    button:hover { background: #8faaf9; }
+
+    .button:hover {
+      background-color: #8fa8f7;
+    }
   </style>
 </head>
 <body>
 
-  <div class="card" id="donationCard">
-    <h2>Would you like to make a donation?</h2>
-    <p>This will allow us to create your user account and give you access to the site.</p>
-    <button onclick="handleDonation('yes')">Yes</button>
-    <button onclick="handleDonation('no')">No</button>
+  <div class="card">
+    <h1>Welcome to Sjone Shrine</h1>
+    <p>Please choose an option to continue:</p>
+    <a class="button" href="storyboard.html">Begin Storyboard</a>
+    <a class="button" href="login.html">Login</a>
   </div>
-
-  <script>
-    function handleDonation(choice) {
-      if (choice === 'yes') {
-        // Redirect to Supabase-based claim account page
-        window.location.href = "claim-account.html";
-      } else {
-        // Redirect to login page (admin will send credentials manually)
-        window.location.href = "login.html";
-      }
-    }
-  </script>
 
 </body>
 </html>
