@@ -1,219 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sjone Shrine Storyboard</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<style>
-  body {
-    font-family: "Segoe UI", sans-serif;
-    background: #f5f5f5;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-  }
-  .storyboard-container {
-    background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    padding: 30px;
-    max-width: 700px;
-    width: 90%;
-    margin-top: 40px;
-  }
-  h2 {
-    color: #3f2b96;
-    margin-bottom: 20px;
-  }
-  .story-page {
-    display: none;
-  }
-  .story-page.active {
-    display: block;
-  }
-  .nav-buttons {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-  }
-  button {
-    padding: 10px 20px;
-    border: none;
-    background: #B6C3F7;
-    color: #fff;
-    font-size: 1rem;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  button:hover {
-    background: #918ef7;
-  }
-  #claimAccountForm {
-    display: none;
-    margin-top: 20px;
-  }
-  input {
-    padding: 10px;
-    margin: 5px 0;
-    width: 100%;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-  }
-  #testResults {
-    font-weight: bold;
-    margin-top: 15px;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Storyboard - Sjone Shrine</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ede7f6, #f5f5f5);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .story-container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      width: 90%;
+      max-width: 700px;
+      text-align: center;
+    }
+
+    .navigation button {
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 10px;
+      border: none;
+      background: #B6C3F7;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .navigation button:hover {
+      background: #8fa8f7;
+    }
+
+    .story-page {
+      display: none;
+    }
+
+    .story-page.active {
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
-<div class="storyboard-container">
-  <h2>Welcome to the Sjone Shrine Storyboard</h2>
-  <div id="introScreen">
-    <button id="loginBtn">Login</button>
-    <button id="beginBtn">Begin</button>
-  </div>
-
-  <div id="emailPrompt" style="display:none;">
-    <p>Please enter your email to begin:</p>
-    <input type="email" id="userEmail" placeholder="you@example.com">
-    <button id="submitEmailBtn">Start Storyboard</button>
-    <p id="emailError" style="color:red;"></p>
-  </div>
-
-  <div id="storyPages">
-    <!-- Example storyboard pages -->
-    <div class="story-page active" data-page="1">
-      <h3>Page 1</h3>
-      <p>Story content goes here...</p>
+  <div class="story-container">
+    <div id="page1" class="story-page active">
+      <h2>Welcome to the Storyboard</h2>
+      <p>Click "Next" to begin your journey.</p>
     </div>
-    <div class="story-page" data-page="2">
-      <h3>Page 2</h3>
-      <p>More story content...</p>
-    </div>
-    <div class="story-page" data-page="3">
-      <h3>Final Test</h3>
-      <p>Answer the questions below:</p>
-      <!-- Placeholder test -->
-      <p>Question 1: <input type="text" id="q1"></p>
-      <p>Question 2: <input type="text" id="q2"></p>
-      <button id="submitTestBtn">Submit Test</button>
-      <p id="testResults"></p>
 
-      <div id="claimAccountForm">
-        <h3>Claim Your Account</h3>
-        <input type="text" id="claimUsername" placeholder="Username">
-        <input type="email" id="claimEmail" placeholder="Email">
-        <input type="password" id="claimPassword" placeholder="Password">
-        <button id="createAccountBtn">Create Account</button>
-      </div>
+    <div id="page2" class="story-page">
+      <h2>Page 2</h2>
+      <p>Content goes here.</p>
+    </div>
+
+    <!-- Add more storyboard pages as needed -->
+
+    <div class="navigation">
+      <button id="prevBtn" onclick="prevPage()">Back</button>
+      <button id="nextBtn" onclick="nextPage()">Next</button>
     </div>
   </div>
 
-  <div class="nav-buttons">
-    <button id="backBtn">Back</button>
-    <button id="nextBtn">Next</button>
-  </div>
-</div>
+  <script>
+    const pages = document.querySelectorAll(".story-page");
+    let currentPage = 0;
 
-<script>
-const supabase = supabase.createClient(
-  "https://cfsiltbmocjsexmjzics.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNmc2lsdGJtb2Nqc2V4bWp6aWNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3NzgyODYsImV4cCI6MjA3MjM1NDI4Nn0._CqTpwg9MZwG1-RDiQhTcjbHIbn77A03x8-AKMacefo"
-);
+    function showPage(index) {
+      pages.forEach((page, i) => page.classList.remove("active"));
+      pages[index].classList.add("active");
 
-let currentPage = 1;
-const totalPages = 3; // adjust as more pages added
-
-document.getElementById('beginBtn').addEventListener('click', () => {
-  document.getElementById('introScreen').style.display = 'none';
-  document.getElementById('emailPrompt').style.display = 'block';
-});
-
-document.getElementById('submitEmailBtn').addEventListener('click', async () => {
-  const email = document.getElementById('userEmail').value.trim();
-  if(!email) {
-    document.getElementById('emailError').innerText = "Email required";
-    return;
-  }
-
-  // Check Supabase for prior attempt
-  const { data, error } = await supabase
-    .from('test_attempts')
-    .select('*')
-    .eq('email', email)
-    .single();
-
-  if (data) {
-    const attemptedDate = new Date(data.attempted_at);
-    const now = new Date();
-    const diffMonths = (now - attemptedDate)/(1000*60*60*24*30);
-    if(diffMonths < 6){
-      alert(`You already attempted this challenge on ${attemptedDate.toDateString()}. Next attempt available in 6 months.`);
-      return;
+      // Disable Back button on first page
+      document.getElementById("prevBtn").disabled = index === 0;
     }
-  }
 
-  window.userEmail = email;
-  document.getElementById('emailPrompt').style.display = 'none';
-  showPage(currentPage);
-});
+    function nextPage() {
+      if (currentPage < pages.length - 1) {
+        currentPage++;
+        showPage(currentPage);
+      } else {
+        // Optional: show final test or "Claim Account" section
+        alert("End of storyboard. Test/Claim Account goes here.");
+      }
+    }
 
-document.getElementById('nextBtn').addEventListener('click', () => {
-  if(currentPage < totalPages){
-    currentPage++;
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    }
+
     showPage(currentPage);
-  }
-});
-document.getElementById('backBtn').addEventListener('click', () => {
-  if(currentPage < totalPages && currentPage !== 3){
-    currentPage--;
-    showPage(currentPage);
-  }
-});
-
-function showPage(pageNum){
-  document.querySelectorAll('.story-page').forEach(p => p.classList.remove('active'));
-  const page = document.querySelector(`.story-page[data-page="${pageNum}"]`);
-  if(page) page.classList.add('active');
-
-  // Hide back button on first page or during test
-  document.getElementById('backBtn').style.display = (pageNum===1 || pageNum===3) ? 'none':'inline-block';
-  document.getElementById('nextBtn').style.display = (pageNum===3) ? 'none':'inline-block';
-}
-
-// Test submission
-document.getElementById('submitTestBtn').addEventListener('click', async () => {
-  const q1 = document.getElementById('q1').value.trim();
-  const q2 = document.getElementById('q2').value.trim();
-  let score = 0;
-  if(q1.toLowerCase() === 'answer1') score += 50;
-  if(q2.toLowerCase() === 'answer2') score += 50;
-
-  const passed = score >= 90;
-  document.getElementById('testResults').innerText = passed ?
-    `🎉 Congratulations! You scored ${score}%. You can now claim your account.` :
-    `You scored ${score}%. You’ll have another opportunity in 6 months.`;
-
-  // Save attempt
-  await supabase.from('test_attempts').upsert({
-    email: window.userEmail,
-    score,
-    passed,
-    attempted_at: new Date()
-  });
-
-  if(passed){
-    document.getElementById('claimAccountForm').style.display = 'block';
-  }
-});
-</script>
-
+  </script>
 </body>
 </html>
