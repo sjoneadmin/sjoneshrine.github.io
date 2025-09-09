@@ -7,7 +7,7 @@ body {
     color: #333;
 }
 
-/* Centered login card */
+/* Centered card for login or content */
 .card {
     background: #fff;
     padding: 2rem;
@@ -15,52 +15,8 @@ body {
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     text-align: center;
     width: 90%;
-    max-width: 500px;
+    max-width: 600px;
     margin: 5% auto;
-}
-
-/* Headings */
-h1, h2 {
-    color: #3f2b96;
-}
-
-h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-}
-
-/* Inputs */
-input {
-    width: 100%;
-    padding: 14px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 1rem;
-}
-
-/* Buttons */
-button {
-    padding: 14px 20px;
-    margin-top: 10px;
-    border: none;
-    background: #3f2b96;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: background 0.2s;
-}
-
-button:hover {
-    background: #5f3dc4;
-}
-
-/* Error text */
-#error {
-    margin-top: 10px;
-    color: #a00;
-    font-size: 0.9rem;
 }
 
 /* Tabs Row */
@@ -73,33 +29,63 @@ button:hover {
 
 /* Individual Tabs */
 .tab {
+    position: relative;
     padding: 12px 20px;
     background: #B6C3F7;
     border-radius: 12px;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    color: black;
     font-weight: 600;
     text-transform: uppercase;
+    transition: color 0.2s;
 }
 
 .tab:hover {
+    color: #fff;
+}
+
+/* Dropdown for ACTION tab */
+.tab .dropdown {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background: #B6C3F7;
+    border-radius: 12px;
+    min-width: 150px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 1;
+    flex-direction: column;
+}
+
+.tab .dropdown div {
+    padding: 10px;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.tab .dropdown div:hover {
     background: #3f2b96;
     color: #fff;
 }
 
-/* Logout Button Inline with Tabs */
+.tab:hover .dropdown {
+    display: flex;
+}
+
+/* Logout Button */
 #logout {
     background: #F67E7F;
 }
 
 #logout:hover {
     background: #c33;
+    color: #fff;
 }
 
-/* Content area */
+/* Tab content */
 #tabContent {
     margin-top: 30px;
     text-align: center;
     font-size: 1.2rem;
+    font-weight: bold;
 }
