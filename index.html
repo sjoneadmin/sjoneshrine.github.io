@@ -3,59 +3,140 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sjone Shrine</title>
+  <title>Sjòne Shrine</title>
   <link rel="stylesheet" href="style.css">
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #ede7f6, #f5f5f5);
+      background: #f5f5f5;
       margin: 0;
       padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
     }
 
-    .card {
-      background: #fff;
-      padding: 2rem;
+    #login, #content {
+      max-width: 600px;
+      margin: 80px auto;
+      padding: 30px;
+      background: #ede7f6;
       border-radius: 20px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       text-align: center;
-      width: 90%;
-      max-width: 500px;
     }
 
-    h1 {
-      color: #3f2b96;
+    input {
+      width: 80%;
+      padding: 15px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
     }
 
-    .button {
-      display: inline-block;
-      padding: 12px 24px;
-      margin: 10px;
-      border-radius: 12px;
-      background-color: #B6C3F7;
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
+    button {
+      padding: 12px 25px;
+      margin-top: 10px;
+      border: none;
+      background: #B6C3F7;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 10px;
       transition: background 0.2s;
     }
-
-    .button:hover {
-      background-color: #8fa8f7;
+    button:hover {
+      background: #5f3dc4;
     }
+
+    #tabs {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .tab {
+      padding: 12px 25px;
+      margin: 0 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
+
+    .tab:hover {
+      color: white;
+    }
+
+    #logout {
+      background: #F38180;
+      margin-left: 15px;
+    }
+
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <h1>Welcome to Sjone Shrine</h1>
-    <p>Please choose an option to continue:</p>
-    <a class="button" href="storyboard.html">Begin Storyboard</a>
-    <a class="button" href="login.html">Login</a>
+  <!-- Login card -->
+  <div id="login">
+    <h1>Sjòne Shrine</h1>
+    <input type="text" id="username" placeholder="Enter Username">
+    <input type="password" id="password" placeholder="Enter Password">
+    <button onclick="login()">Login</button>
+    <p id="error"></p>
   </div>
 
+  <!-- Content card -->
+  <div id="content" style="display:none;">
+    <h1>Sjòne Shrine</h1>
+    <div id="tabs">
+      <div class="tab" onclick="showContent('origin')">ORIGIN</div>
+      <div class="tab" onclick="showContent('range')">RANGE</div>
+      <div class="tab" onclick="showContent('season')">SEASON</div>
+      <div class="tab" onclick="showContent('performance')">PERFORMANCE</div>
+      <div class="tab" onclick="showContent('action')">ACTION</div>
+      <div class="tab" onclick="showContent('support')">SUPPORT</div>
+      <button id="logout" onclick="logout()">Logout</button>
+    </div>
+    <div id="tabContent" style="margin-top:30px; font-weight:bold;"></div>
+  </div>
+
+  <script>
+    const users = {
+      user1: { password: "abc123" },
+      admin: { password: "wewelcomeyou" },
+      sjonekim: { password: "wewelcomeyou" }
+    };
+
+    const tabContents = {
+      origin: "Kimatrices",
+      range: "Airubie",
+      season: "Ohkoko!",
+      performance: "Armirror",
+      action: "Shhgest, After-school, App Pretty",
+      support: "Tithe"
+    };
+
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      if(users[username] && users[username].password === password){
+        document.getElementById("login").style.display="none";
+        document.getElementById("content").style.display="block";
+      } else {
+        document.getElementById("error").innerText="Invalid username or password.";
+      }
+    }
+
+    function logout(){
+      document.getElementById("login").style.display="block";
+      document.getElementById("content").style.display="none";
+      document.getElementById("username").value="";
+      document.getElementById("password").value="";
+      document.getElementById("error").innerText="";
+      document.getElementById("tabContent").innerText="";
+    }
+
+    function showContent(tab){
+      document.getElementById("tabContent").innerText = tabContents[tab];
+    }
+  </script>
 </body>
 </html>
