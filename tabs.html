@@ -17,7 +17,14 @@
         <div class="tab" onclick="showContent('range')">RANGE</div>
         <div class="tab" onclick="showContent('season')">SEASON</div>
         <div class="tab" onclick="showContent('performance')">PERFORMANCE</div>
-        <div class="tab" onclick="showContent('action')">ACTION</div>
+        <div class="tab">
+            ACTION
+            <div class="dropdown">
+                <div onclick="showContent('shhgest')">Shhgest</div>
+                <div onclick="showContent('afterschool')">After-school</div>
+                <div onclick="showContent('apppretty')">App Pretty</div>
+            </div>
+        </div>
         <div class="tab" onclick="showContent('support')">SUPPORT</div>
         <div class="tab" id="logout" onclick="logout()">LOGOUT</div>
     </div>
@@ -32,11 +39,13 @@
         range: "Airubie",
         season: "Ohkoko!",
         performance: "Armirror",
-        action: "Shhgest, After-school, App Pretty",
+        shhgest: "Shhgest",
+        afterschool: "After-school",
+        apppretty: "App Pretty",
         support: "Tithe"
     };
 
-    // Example current user (replace with dynamic user from login)
+    // Example current user (replace with login logic)
     const currentUser = "admin";
     document.getElementById("userDisplay").innerText = currentUser;
 
