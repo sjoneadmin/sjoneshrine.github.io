@@ -17,28 +17,27 @@ nav {
   border-bottom: 2px solid #e0e0e0;
 }
 
-/* Nav links */
-nav a, nav .dropbtn {
+/* Nav links + dropdown button */
+nav a, .dropbtn {
   color: #333;
   text-decoration: none;
   font-weight: normal;
   transition: all 0.3s ease;
   position: relative;
   padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
   border: none;
   background: none;
-  cursor: pointer;
-  font-size: 1rem;
 }
 
-/* Hover effect: bold + white text only */
-nav a:hover,
-nav .dropbtn:hover {
+/* Hover effect: letters only (white + bold) */
+nav a:hover, .dropbtn:hover {
   color: #fff;
   font-weight: bold;
 }
 
-/* Dropdown menu container */
+/* Dropdown container */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -48,12 +47,14 @@ nav .dropbtn:hover {
 .dropdown-content {
   display: none;
   position: absolute;
+  top: 100%; /* directly below ACTION */
+  left: 0;
   background-color: #ede7f6;
   min-width: 160px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
   text-align: left;
-  z-index: 1;
+  z-index: 999;
 }
 
 /* Dropdown items */
@@ -69,10 +70,10 @@ nav .dropbtn:hover {
 .dropdown-content a:hover {
   color: #fff;
   font-weight: bold;
-  background: none; /* keep airy, no block highlight */
+  background: none; /* no block highlight */
 }
 
-/* Show dropdown on hover */
+/* Show dropdown when hovering ACTION */
 .dropdown:hover .dropdown-content {
   display: block;
 }
