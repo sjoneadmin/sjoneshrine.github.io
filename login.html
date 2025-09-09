@@ -1,90 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Sjone Shrine</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #ede7f6, #f5f5f5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sjòne Shrine Tabs</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body {
+    font-family: "Segoe UI", sans-serif;
+    background: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
 
-    .card {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      text-align: center;
-      width: 90%;
-      max-width: 400px;
-    }
+  /* Login card */
+  #login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
 
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-    }
+  #login input {
+    width: 300px;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
 
-    button {
-      padding: 12px 20px;
-      margin-top: 10px;
-      border: none;
-      background: #B6C3F7;
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 10px;
-      transition: background 0.2s;
-    }
+  #login button {
+    padding: 12px 25px;
+    margin-top: 10px;
+    border: none;
+    background-color: #B6C3F7;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+  }
 
-    button:hover {
-      background: #8fa8f7;
-    }
+  #login button:hover {
+    background-color: #9AADE3;
+  }
 
-    #error {
-      margin-top: 10px;
-      color: #a00;
-      font-size: 0.9rem;
-    }
-  </style>
+  #error {
+    color: #a00;
+    margin-top: 8px;
+  }
+
+  /* Tabs container */
+  #content {
+    display: none;
+    padding: 20px;
+    background: #fff;
+  }
+
+  #tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .tab {
+    padding: 12px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    background: transparent;
+    transition: color 0.2s;
+  }
+
+  .tab:hover {
+    color: #fff;
+    background: #B6C3F7;
+  }
+
+  #tabContent {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px 0;
+  }
+
+  /* Logout button styled like a tab */
+  #logout {
+    padding: 12px 20px;
+    border-radius: 12px;
+    background: #F38180;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+  }
+
+  #logout:hover {
+    background: #F67E7F;
+  }
+</style>
 </head>
 <body>
-  <div class="card">
-    <h2>Login to Sjone Shrine</h2>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-    <p id="error"></p>
+
+<!-- Login Card -->
+<div id="login">
+  <h2>Sjòne Shrine</h2>
+  <input type="text" id="username" placeholder="Enter Username">
+  <input type="password" id="password" placeholder="Enter Password">
+  <button onclick="login()">Login</button>
+  <p id="error"></p>
+</div>
+
+<!-- Tabs Content -->
+<div id="content">
+  <div id="tabs">
+    <div class="tab" onclick="showTab('origin')">ORIGIN</div>
+    <div class="tab" onclick="showTab('range')">RANGE</div>
+    <div class="tab" onclick="showTab('season')">SEASON</div>
+    <div class="tab" onclick="showTab('performance')">PERFORMANCE</div>
+    <div class="tab" onclick="showTab('action')">ACTION</div>
+    <div class="tab" onclick="showTab('support')">SUPPORT</div>
+    <button id="logout" onclick="logout()">Logout</button>
   </div>
+  <div id="tabContent"></div>
+</div>
 
-  <script>
-    const userPasswords = {
-      "user1": "abc123",
-      "sjonekim": "wewelcomeyou",
-      "admin": "wewelcomeyou"
-    };
+<script>
+const userPasswords = {
+  "user1": { password: "abc123", allowedTabs: ["origin","range","season","performance","action","support"] },
+  "admin": { password: "wewelcomeyou", allowedTabs: ["origin","range","season","performance","action","support"] },
+  "sjonekim": { password: "wewelcomeyou", allowedTabs: ["origin","range","season","performance","action","support"] }
+};
 
-    function login() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+const allTabs = {
+  origin: "Kimatrices",
+  range: "Airubie",
+  season: "Ohkoko!",
+  performance: "Armirror",
+  action: "Shhgest, After-school, App Pretty",
+  support: "Tithe"
+};
 
-      if (userPasswords[username] && userPasswords[username] === password) {
-        // Redirect to tabs page after successful login
-        window.location.href = "tabs.html";
-      } else {
-        document.getElementById("error").innerText = "Invalid username or password.";
-      }
-    }
-  </script>
+let currentUser = "";
+
+function login() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+  const user = userPasswords[username];
+
+  if(user && user.password === password) {
+    currentUser = username;
+    document.getElementById("login").style.display = "none";
+    document.getElementById("content").style.display = "block";
+    document.getElementById("tabContent").innerText = ""; // start blank
+  } else {
+    document.getElementById("error").innerText = "Invalid username or password.";
+  }
+}
+
+function logout() {
+  document.getElementById("login").style.display = "flex";
+  document.getElementById("content").style.display = "none";
+  document.getElementById("username").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("error").innerText = "";
+  document.getElementById("tabContent").innerText = "";
+  currentUser = "";
+}
+
+function showTab(tabName) {
+  if(currentUser && userPasswords[currentUser].allowedTabs.includes(tabName)) {
+    document.getElementById("tabContent").innerText = allTabs[tabName];
+  }
+}
+</script>
+
 </body>
 </html>
