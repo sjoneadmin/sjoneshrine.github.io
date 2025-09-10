@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sjòne Shrine Tabs</title>
+  <style>
+    /* Navbar styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+    }
+
+    .navbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #222;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: normal;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover {
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    /* Dropdown container */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Dropdown button */
+    .dropbtn {
+      background-color: transparent;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: normal;
+      transition: all 0.2s ease;
+      font-size: 1em;
+    }
+
+    .dropbtn:hover {
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    /* Dropdown content */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #222;
+      min-width: 160px;
+      flex-direction: column;
+      z-index: 1000;
+    }
+
+    .dropdown-content a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      display: block;
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-content a:hover {
+      font-weight: bold;
+      letter-spacing: 1px;
+      background-color: transparent;
+    }
+
+    /* Show dropdown on hover (desktop) */
+    @media (hover: hover) {
+      .dropdown:hover .dropdown-content {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    /* Mobile/touch-friendly: toggle dropdown on click */
+    .dropdown.active .dropdown-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-link, .dropbtn {
+        margin: 5px 0;
+      }
+
+      .dropdown-content {
+        position: relative;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="#origin" class="nav-link">ORIGIN</a>
+    <a href="#range" class="nav-link">RANGE</a>
+
+    <!-- Actions dropdown -->
+    <div class="dropdown" id="actionsDropdown">
+      <button class="dropbtn">ACTIONS</button>
+      <div class="dropdown-content">
+        <a href="shhgest.html">Shhgest</a>
+        <a href="after-school.html">After-school</a>
+        <a href="apppretty.html">App Pretty</a>
+      </div>
+    </div>
+
+    <a href="#kimatrices" class="nav-link">KIMATRICES</a>
+    <a href="#storage" class="nav-link">In need of V.A.+Data Storage &gt; kimatrices origin block</a>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <section id="origin">
+      <h1>Origin Section</h1>
+      <p>Content for Origin goes here.</p>
+    </section>
+
+    <section id="range">
+      <h1>Range Section</h1>
+      <p>Content for Range goes here.</p>
+    </section>
+
+    <section id="kimatrices">
+      <h1>Kimatrices Section</h1>
+      <p>Content for Kimatrices goes here.</p>
+    </section>
+
+    <section id="storage">
+      <h1>In need of V.A.+Data Storage &gt; kimatrices origin block</h1>
+      <p>Content for this section goes here.</p>
+    </section>
+  </main>
+
+  <!-- Mobile dropdown toggle script -->
+  <script>
+    const dropdown = document.getElementById('actionsDropdown');
+    const button = dropdown.querySelector('.dropbtn');
+
+    button.addEventListener('click', () => {
+      dropdown.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>
