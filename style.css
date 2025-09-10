@@ -1,52 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sjòne Shrine</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
 
-  <!-- Navbar -->
-  <nav>
-    <a href="#origin">ORIGIN</a>
-    <a href="#range">RANGE</a>
-    <a href="#season">SEASON</a>
-    <a href="#performance">PERFORMANCE</a>
+header {
+    text-align: center;
+    padding: 30px;
+    background: #B6C3F7;
+    color: #fff;
+    font-size: 2rem;
+}
 
-    <!-- Dropdown for ACTION -->
-    <div class="dropdown">
-      <span class="dropbtn">ACTION</span>
-      <div class="dropdown-content">
-        <a href="shhgest.html">Shhgest</a>
-        <a href="afterschool.html">After-school</a>
-        <a href="apppretty.html">App Pretty</a>
-      </div>
-    </div>
+nav {
+    display: flex;
+    justify-content: center;
+    background: #3f2b96;
+    padding: 10px 0;
+}
 
-    <a href="#support">SUPPORT</a>
-    <a href="login.html" class="logout-btn">Logout</a>
-  </nav>
+nav a {
+    color: #B6C3F7;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: normal;
+    transition: all 0.2s ease;
+}
 
-  <!-- Tab Content -->
-  <main>
-    <section id="origin">
-      <h2><b>Kimatrices</b></h2>
-    </section>
-    <section id="range">
-      <h2><b>Airubie</b></h2>
-    </section>
-    <section id="season">
-      <h2><b>Ohkoko!</b></h2>
-    </section>
-    <section id="performance">
-      <h2><b>Armirror</b></h2>
-    </section>
-    <section id="support">
-      <h2><b>Tithe</b></h2>
-    </section>
-  </main>
+nav a:hover {
+    color: #fff;
+    font-weight: bold;
+}
 
-</body>
-</html>
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: #3f2b96;
+    min-width: 160px;
+    z-index: 1;
+    flex-direction: column;
+}
+
+.dropdown-content a {
+    color: #B6C3F7;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    color: #fff;
+    font-weight: bold;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+#logout {
+    margin-left: 30px;
+    padding: 5px 15px;
+    border-radius: 15px;
+    background: #F38180;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#logout:hover {
+    background: #F67E7F;
+}
