@@ -1,55 +1,44 @@
-/* Navbar base */
-nav {
-  background-color: #111;
-  padding: 10px;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sjòne Shrine Tabs</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-nav a, .dropbtn {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 8px 12px;
-  transition: 0.2s;
-}
+  <!-- Navbar -->
+  <nav class="navbar">
+    <!-- Other nav links -->
+    <a href="#origin" class="nav-link">ORIGIN</a>
+    <a href="#range" class="nav-link">RANGE</a>
 
-/* Hover effect: thin white, bold */
-nav a:hover, .dropbtn:hover, .dropdown-content a:hover {
-  font-weight: bold;
-  background: none; /* no block highlight */
-  color: white;
-}
+    <!-- Actions dropdown -->
+    <div class="dropdown">
+      <button class="dropbtn">ACTIONS</button>
+      <div class="dropdown-content">
+        <a href="shhgest.html">Shhgest</a>
+        <a href="after-school.html">After-school</a>
+        <a href="apppretty.html">App Pretty</a>
+      </div>
+    </div>
+  </nav>
 
-/* Dropdown container */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+  <!-- Main Content -->
+  <main>
+    <section id="origin">
+      <h1>Origin Section</h1>
+      <p>Content for Origin goes here.</p>
+    </section>
 
-/* Dropdown content hidden by default */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #222;
-  min-width: 160px;
-  border-radius: 6px;
-  margin-top: 5px;
-  z-index: 1000;
-}
+    <section id="range">
+      <h1>Range Section</h1>
+      <p>Content for Range goes here.</p>
+    </section>
 
-/* Dropdown links */
-.dropdown-content a {
-  color: white;
-  padding: 10px 14px;
-  text-decoration: none;
-  display: block;
-  transition: 0.2s;
-}
+    <!-- Additional content can go here -->
+  </main>
 
-/* Show dropdown on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
+</body>
+</html>
