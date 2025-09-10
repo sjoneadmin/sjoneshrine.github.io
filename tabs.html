@@ -8,64 +8,28 @@
 </head>
 <body>
 
-<header>
-    <h1>Sjòne Shrine</h1>
-</header>
+<header>Sjòne Shrine</header>
 
-<!-- Tabs navigation -->
 <nav>
-    <a href="#" data-tab="origin">ORIGIN</a>
-    <a href="#" data-tab="range">RANGE</a>
-    <a href="#" data-tab="season">SEASON</a>
-    <a href="#" data-tab="performance">PERFORMANCE</a>
-    
-    <!-- Action Dropdown -->
+    <a href="#">ORIGIN</a>
+    <a href="#">RANGE</a>
+    <a href="#">SEASON</a>
+    <a href="#">PERFORMANCE</a>
     <div class="dropdown">
-        <button class="dropbtn">ACTION</button>
+        <a href="#">ACTION</a>
         <div class="dropdown-content">
             <a href="shhgest.html">Shhgest</a>
             <a href="afterschool.html">After-school</a>
             <a href="apppretty.html">App Pretty</a>
         </div>
     </div>
-    
-    <a href="#" data-tab="support">SUPPORT</a>
-    <button id="logout" onclick="logout()">LOGOUT</button>
+    <a href="#">SUPPORT</a>
+    <a id="logout" href="login.html">LOGOUT</a>
 </nav>
 
-<!-- Tab content -->
-<div id="tabContent" style="padding: 40px; text-align: center; font-size: 1.5rem;">
-    <p>Select a tab to view content.</p>
-</div>
-
-<script>
-const tabData = {
-    origin: "Kimatrices",
-    range: "Airubie",
-    season: "Ohkoko!",
-    performance: "Armirror",
-    support: "Tithe"
-};
-
-function showTabContent(tab) {
-    const contentDiv = document.getElementById('tabContent');
-    if(tabData[tab]) {
-        contentDiv.innerHTML = `<strong>${tabData[tab]}</strong>`;
-    }
-}
-
-document.querySelectorAll('nav a[data-tab]').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const tab = link.getAttribute('data-tab');
-        showTabContent(tab);
-    });
-});
-
-function logout() {
-    window.location.href = "login.html"; // Redirect back to login
-}
-</script>
+<main>
+    <h2>Hover over the tabs to see content titles</h2>
+</main>
 
 </body>
 </html>
