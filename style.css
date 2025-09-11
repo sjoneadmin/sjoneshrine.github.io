@@ -1,59 +1,59 @@
-/* General body */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background-color: #f9f7fb;
-  color: #333;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sjòne Shrine Tabs</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-/* Header */
-header {
-  background-color: #6a4caf;
-  color: white;
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  padding: 20px;
-}
+<div class="tabs-container">
+  <div class="tab" data-tab="origin">ORIGIN</div>
+  <div class="tab" data-tab="range">RANGE</div>
+  <div class="tab" data-tab="season">SEASON</div>
+  <div class="tab" data-tab="performance">PERFORMANCE</div>
+  
+  <div class="tab" data-tab="shhgest">SHHGEST</div>
+  <div class="tab" data-tab="afterschool">AFTER-SCHOOL</div>
+  <div class="tab" data-tab="apppretty">APP PRETTY</div>
 
-/* Navbar */
-nav {
-  display: flex;
-  justify-content: center;
-  background-color: #6a4caf;
-  padding: 10px 0;
-}
+  <div class="tab" data-tab="support">SUPPORT</div>
+  <div class="logout-tab" id="logout">LOGOUT</div>
+</div>
 
-nav a {
-  color: #ede7f6;
-  text-decoration: none;
-  padding: 12px 18px;
-  font-size: 16px;
-  transition: color 0.3s ease, font-weight 0.3s ease;
-}
+<div id="tab-content" class="tab-content">
+  <strong>Welcome!</strong>
+  <p>Select a tab to view its content.</p>
+</div>
 
-nav a:hover {
-  color: #ffffff;
-  font-weight: bold;
-}
+<script>
+const userContent = {
+  origin: "Kimatrices",
+  range: "Airubie",
+  season: "Ohkoko!",
+  performance: "Armirror",
+  shhgest: "Shhgest content goes here",
+  afterschool: "After-school content goes here",
+  apppretty: "App Pretty content goes here",
+  support: "Tithe"
+};
 
-/* Logout button styled */
-#logout {
-  background-color: #ede7f6;
-  color: #6a4caf;
-  border-radius: 20px;
-  margin-left: 20px;
-  font-weight: bold;
-  padding: 12px 18px;
-}
+const tabs = document.querySelectorAll('.tab[data-tab]');
+const tabContent = document.getElementById('tab-content');
+const logout = document.getElementById('logout');
 
-#logout:hover {
-  background-color: #F38180;
-  color: white;
-}
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const key = tab.getAttribute('data-tab');
+    tabContent.innerHTML = `<strong>${userContent[key]}</strong>`;
+  });
+});
 
-/* Main content */
-main {
-  text-align: center;
-  padding: 40px;
-}
+logout.addEventListener('click', () => {
+  location.reload(); // simple logout reloads page
+});
+</script>
+
+</body>
+</html>
