@@ -1,4 +1,4 @@
-/* General */
+/* General body */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -14,17 +14,14 @@ header {
   font-size: 28px;
   font-weight: bold;
   padding: 20px;
-  letter-spacing: 1px;
 }
 
 /* Navbar */
 nav {
   display: flex;
   justify-content: center;
-  align-items: center;
   background-color: #6a4caf;
   padding: 10px 0;
-  gap: 5px; /* adds a little breathing room between tabs */
 }
 
 nav a {
@@ -47,8 +44,7 @@ nav a:hover {
   border-radius: 20px;
   margin-left: 20px;
   font-weight: bold;
-  padding: 10px 18px; /* added padding for balance */
-  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 12px 18px;
 }
 
 #logout:hover {
