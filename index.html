@@ -12,7 +12,7 @@
   button:hover { background:#9AADE3; }
   #error { font-size:0.9rem; }
   .password-wrapper { position:relative; }
-  .password-wrapper span { position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer; user-select:none; color:#888; }
+  .password-wrapper span { position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer; user-select:none; color:#888; padding:2px 6px; border-radius:4px; border:1px solid #ccc; font-size:0.8rem; }
 </style>
 </head>
 <body>
@@ -22,7 +22,7 @@
   <input type="text" id="username" placeholder="Username">
   <div class="password-wrapper">
     <input type="password" id="password" placeholder="Password">
-    <span id="toggleEye">👁️</span>
+    <span id="toggleEye">Show</span>
   </div>
   <button id="loginBtn">Login</button>
   <button id="signupBtn">Sign Up</button>
@@ -30,7 +30,9 @@
 </div>
 
 <script>
-const WORKER_URL = 'https://sjoneusers.sjoneshrine.workers.dev/'; 
+const WORKER_URL = 'https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev/'; 
+// Replace with your D1 Worker URL
+
 const usernameInput = document.getElementById('username');
 const passwordInput = document.getElementById('password');
 const errorEl = document.getElementById('error');
@@ -45,10 +47,10 @@ function handleResponse(res) {
       errorEl.style.color = 'green';
       errorEl.innerText = data.message;
       // TODO: redirect to dashboard later
-      // Example: window.location.href = '/dashboard.html';
+      // window.location.href = '/dashboard.html';
     } else {
       errorEl.style.color = '#a00';
-      errorEl.innerText = data.message; // ✅ fixed
+      errorEl.innerText = data.message;
     }
   }).catch(e => console.error(e));
 }
