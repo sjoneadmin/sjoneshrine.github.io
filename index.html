@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sjòne Shrine Login</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body { font-family: "Segoe UI", sans-serif; background: #f5f5f5; margin:0; padding:0; }
+  #login { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; }
+  #login input { width:300px; padding:15px; margin:10px 0; border-radius:12px; border:1px solid #ccc; font-size:1rem; }
+  #login button { padding:12px 25px; margin-top:10px; border:none; background-color:#B6C3F7; color:#fff; font-size:1rem; border-radius:12px; cursor:pointer; }
+  #login button:hover { background-color:#9AADE3; }
+  #error { color:#a00; margin-top:8px; }
+</style>
+</head>
+<body>
+
+<div id="login">
+  <h2>Sjòne Shrine</h2>
+  <input type="text" id="username" placeholder="Enter Username">
+  <input type="password" id="password" placeholder="Enter Password">
+  <button onclick="login()">Login</button>
+  <p id="error"></p>
+</div>
+
+<div id="dashboard" style="display:none; padding:20px;">
+  <h2>Dashboard Placeholder</h2>
+  <p>This is where your dashboard HTML will be integrated later.</p>
+</div>
+
+<script>
+// User database
+const userPasswords = {
+  "user1": "abc123",
+  "admin": "wewelcomeyou",
+  "sjonekim": "wewelcomeyou"
+};
+
+let currentUser = "";
+
+// Cloudflare credentials (embedded here for simplicity)
+const CLOUDFLARE_GLOBAL_API_KEY = "a8596583ec92b22f82b0974e2e4c68e681eea";
+const CLOUDFLARE_ACCOUNT_ID = "0bea87c19739484f2527d3187212c6d4";
+const CLOUDFLARE_ZONE_ID = "efea9dc2863f6d4c847d95d69e2d6461";
+
+// Login function
+function login() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+  if(userPasswords[username] && userPasswords[username] === password) {
+    currentUser = username;
+    document.getElementById("error").innerText = "Password correct. Authenticating with Cloudflare...";
+    cloudflareAuth();
+  } else {
+    document.getElementById("error").innerText = "Invalid username or password.";
+  }
+}
+
+// Cloudflare authentication
+function cloudflareAuth() {
+  // Example: validate via Cloudflare API (here simulated)
+  // Replace with real API call if needed
+  fetch(`https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}`, {
+    method: "GET",
+    headers: {
+      "X-Auth-Key": CLOUDFLARE_GLOBAL_API_KEY,
+      "X-Auth-Email": "your-email@example.com", // required for global API key
+      "Content-Type": "application/json"
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    if(data.success) {
+      // Cloudflare authentication successful
+      showDashboard();
+    } else {
+      document.getElementById("error").innerText = "Cloudflare authentication failed.";
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    document.getElementById("error").innerText = "Cloudflare authentication error.";
+  });
+}
+
+// Show dashboard placeholder
+function showDashboard() {
+  document.getElementById("login").style.display = "none";
+  document.getElementById("dashboard").style.display = "block";
+}
+</script>
+
+</body>
+</html>
