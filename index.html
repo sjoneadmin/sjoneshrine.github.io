@@ -3,92 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sjòne Shrine Login</title>
-<link rel="stylesheet" href="style.css">
+<title>Sjòne Shrine Login Page</title>
 <style>
-  body { font-family: "Segoe UI", sans-serif; background: #f5f5f5; margin:0; padding:0; }
-  #login { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; }
-  #login input { width:300px; padding:15px; margin:10px 0; border-radius:12px; border:1px solid #ccc; font-size:1rem; }
-  #login button { padding:12px 25px; margin-top:10px; border:none; background-color:#B6C3F7; color:#fff; font-size:1rem; border-radius:12px; cursor:pointer; }
-  #login button:hover { background-color:#9AADE3; }
-  #error { color:#a00; margin-top:8px; }
+  body { font-family: "Segoe UI", sans-serif; display:flex; justify-content:center; align-items:center; height:100vh; background:#f5f5f5; margin:0; }
+  #loginCard { background:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:320px; display:flex; flex-direction:column; gap:12px; }
+  input { padding:12px; border-radius:8px; border:1px solid #ccc; font-size:1rem; width:100%; }
+  button { padding:12px; border:none; border-radius:8px; background:#B6C3F7; color:#fff; font-size:1rem; cursor:pointer; }
+  button:hover { background:#9AADE3; }
+  #error { color:#a00; font-size:0.9rem; }
+  .password-wrapper { position:relative; }
+  .password-wrapper span { position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer; user-select:none; color:#888; }
 </style>
 </head>
 <body>
 
-<div id="login">
+<div id="loginCard">
   <h2>Sjòne Shrine</h2>
-  <input type="text" id="username" placeholder="Enter Username">
-  <input type="password" id="password" placeholder="Enter Password">
-  <button onclick="login()">Login</button>
+  <input type="text" id="username" placeholder="Username">
+  <div class="password-wrapper">
+    <input type="password" id="password" placeholder="Password">
+    <span id="toggleEye">👁️</span>
+  </div>
+  <button id="loginBtn">Login</button>
+  <button id="signupBtn">Sign Up</button>
   <p id="error"></p>
 </div>
 
-<div id="dashboard" style="display:none; padding:20px;">
-  <h2>Dashboard Placeholder</h2>
-  <p>This is where your dashboard HTML will be integrated later.</p>
-</div>
-
 <script>
-// User database
-const userPasswords = {
-  "user1": "abc123",
-  "admin": "wewelcomeyou",
-  "sjonekim": "wewelcomeyou"
-};
+const WORKER_URL = 'https://YOUR_DEPLOYED_WORKER_URL.workers.dev'; // Replace with actual Worker URL
 
-let currentUser = "";
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+const errorEl = document.getElementById('error');
+const toggleEye = document.getElementById('toggleEye');
 
-// Cloudflare credentials (embedded here for simplicity)
-const CLOUDFLARE_GLOBAL_API_KEY = "a8596583ec92b22f82b0974e2e4c68e681eea";
-const CLOUDFLARE_ACCOUNT_ID = "0bea87c19739484f2527d3187212c6d4";
-const CLOUDFLARE_ZONE_ID = "efea9dc2863f6d4c847d95d69e2d6461";
+toggleEye.addEventListener('mouseover', () => passwordInput.type = 'text');
+toggleEye.addEventListener('mouseout', () => passwordInput.type = 'password');
 
-// Login function
-function login() {
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-  if(userPasswords[username] && userPasswords[username] === password) {
-    currentUser = username;
-    document.getElementById("error").innerText = "Password correct. Authenticating with Cloudflare...";
-    cloudflareAuth();
-  } else {
-    document.getElementById("error").innerText = "Invalid username or password.";
-  }
-}
-
-// Cloudflare authentication
-function cloudflareAuth() {
-  // Example: validate via Cloudflare API (here simulated)
-  // Replace with real API call if needed
-  fetch(`https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}`, {
-    method: "GET",
-    headers: {
-      "X-Auth-Key": CLOUDFLARE_GLOBAL_API_KEY,
-      "X-Auth-Email": "your-email@example.com", // required for global API key
-      "Content-Type": "application/json"
-    }
-  })
-  .then(response => response.json())
-  .then(data => {
-    if(data.success) {
-      // Cloudflare authentication successful
-      showDashboard();
+function handleResponse(res) {
+  res.json().then(data => {
+    if(data.success){
+      errorEl.style.color = 'green';
+      errorEl.innerText = data.message;
+      // TODO: redirect to dashboard later
+      // Example: window.location.href = '/dashboard.html';
     } else {
-      document.getElementById("error").innerText = "Cloudflare authentication failed.";
+      errorEl.style.color = '#a00';
+      errorEl.innerText = data.error;
     }
-  })
-  .catch(err => {
-    console.error(err);
-    document.getElementById("error").innerText = "Cloudflare authentication error.";
-  });
+  }).catch(e => console.error(e));
 }
 
-// Show dashboard placeholder
-function showDashboard() {
-  document.getElementById("login").style.display = "none";
-  document.getElementById("dashboard").style.display = "block";
+async function sendAction(action) {
+  const username = usernameInput.value.trim();
+  const password = passwordInput.value;
+  if(!username || !password){ errorEl.innerText="Enter username and password"; return; }
+
+  const res = await fetch(WORKER_URL, {
+    method: 'POST',
+    headers:{ 'Content-Type':'application/json' },
+    body: JSON.stringify({ action, username, password })
+  });
+  handleResponse(res);
 }
+
+document.getElementById('loginBtn').addEventListener('click', () => sendAction('login'));
+document.getElementById('signupBtn').addEventListener('click', () => sendAction('signup'));
+passwordInput.addEventListener('keydown', e => { if(e.key==='Enter') sendAction('login'); });
 </script>
 
 </body>
