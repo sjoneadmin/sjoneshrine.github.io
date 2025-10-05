@@ -10,7 +10,7 @@
   input { padding:12px; border-radius:8px; border:1px solid #ccc; font-size:1rem; width:100%; }
   button { padding:12px; border:none; border-radius:8px; background:#B6C3F7; color:#fff; font-size:1rem; cursor:pointer; }
   button:hover { background:#9AADE3; }
-  #error { color:#a00; font-size:0.9rem; }
+  #error { font-size:0.9rem; }
   .password-wrapper { position:relative; }
   .password-wrapper span { position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer; user-select:none; color:#888; }
 </style>
@@ -48,7 +48,7 @@ function handleResponse(res) {
       // Example: window.location.href = '/dashboard.html';
     } else {
       errorEl.style.color = '#a00';
-      errorEl.innerText = data.error;
+      errorEl.innerText = data.message; // ✅ fixed
     }
   }).catch(e => console.error(e));
 }
@@ -56,7 +56,7 @@ function handleResponse(res) {
 async function sendAction(action) {
   const username = usernameInput.value.trim();
   const password = passwordInput.value;
-  if(!username || !password){ errorEl.innerText="Enter username and password"; return; }
+  if(!username || !password){ errorEl.style.color='#a00'; errorEl.innerText="Enter username and password"; return; }
 
   const res = await fetch(WORKER_URL, {
     method: 'POST',
