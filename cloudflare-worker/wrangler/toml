@@ -1,0 +1,7 @@
+name = "sjone-login-worker"
+main = "src/index.ts"
+compatibility_date = "2025-10-05"
+
+kv_namespaces = [
+  { binding = "SJONE_USERS", id = "e69fdb9bd13a4f0795386b43d277c4e3" }
+]
