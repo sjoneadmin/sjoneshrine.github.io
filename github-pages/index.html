@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sjòne Shrine Login Page</title>
+<style>
+  body { font-family: "Segoe UI", sans-serif; display:flex; justify-content:center; align-items:center; height:100vh; background:#f5f5f5; margin:0; }
+  #loginCard { background:#fff; padding:30px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:320px; display:flex; flex-direction:column; gap:12px; }
+  input { padding:12px; border-radius:8px; border:1px solid #ccc; font-size:1rem; width:100%; }
+  button { padding:12px; border:none; border-radius:8px; background:#B6C3F7; color:#fff; font-size:1rem; cursor:pointer; }
+  button:hover { background:#9AADE3; }
+  #error { color:#a00; font-size:0.9rem; }
+  .password-wrapper { position:relative; }
+  .password-wrapper span { position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer; user-select:none; color:#888; }
+</style>
+</head>
+<body>
+
+<div id="loginCard">
+  <h2>Sjòne Shrine</h2>
+  <input type="text" id="username" placeholder="Username">
+  <div class="password-wrapper">
+    <input type="password" id="password" placeholder="Password">
+    <span id="toggleEye">👁️</span>
+  </div>
+  <button id="loginBtn">Login</button>
+  <button id="signupBtn">Sign Up</button>
+  <p id="error"></p>
+</div>
+
+<script>
+const WORKER_URL = 'https://YOUR_DEPLOYED_WORKER_URL.workers.dev'; // Replace with actual Worker URL
+
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+const errorEl = document.getElementById('error');
+const toggleEye = document.getElementById('toggleEye');
+
+toggleEye.addEventListener('mouseover', () => passwordInput.type = 'text');
+toggleEye.addEventListener('mouseout', () => passwordInput.type = 'password');
+
+function handleResponse(res) {
+  res.json().then(data => {
+    if(data.success){
+      errorEl.style.color = 'green';
+      errorEl.innerText = data.message;
+      // TODO: redirect to dashboard later
+      // Example: window.location.href = '/dashboard.html';
+    } else {
+      errorEl.style.color = '#a00';
+      errorEl.innerText = data.error;
+    }
+  }).catch(e => console.error(e));
+}
+
+async function sendAction(action) {
+  const username = usernameInput.value.trim();
+  const password = passwordInput.value;
+  if(!username || !password){ errorEl.innerText="Enter username and password"; return; }
+
+  const res = await fetch(WORKER_URL, {
+    method: 'POST',
+    headers:{ 'Content-Type':'application/json' },
+    body: JSON.stringify({ action, username, password })
+  });
+  handleResponse(res);
+}
+
+document.getElementById('loginBtn').addEventListener('click', () => sendAction('login'));
+document.getElementById('signupBtn').addEventListener('click', () => sendAction('signup'));
+passwordInput.addEventListener('keydown', e => { if(e.key==='Enter') sendAction('login'); });
+</script>
+
+</body>
+</html>
